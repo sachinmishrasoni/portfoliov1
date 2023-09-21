@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import { Box, Divider } from '@mui/material';
 import './App.css';
+import Layout from './Components/LayoutWrapper/Layout'
+import About from './Components/Pages/AboutPage/About';
+import Home from './Components/Pages/HomePage/Home';
+import Services from './Components/Pages/ServiecesPage/Services';
+import Projects from './Components/Pages/ProjectsPage/Projects';
+import Contact from './Components/Pages/ContactPage/Contact';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Layout>
+        <Box overflow={'hidden'}>
+          <Home />
+          <Divider />
+          <About />
+          <Divider />
+          <Services />
+          <Divider />
+          <Projects />
+          <Divider />
+          <Contact />
+        </Box>
+      </Layout>
+    </>
   );
 }
 

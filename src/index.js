@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+
 import reportWebVitals from './reportWebVitals';
+import ThemeModeProvider from './AppTheme/ThemeModeProvider';
+import LodingCompo from './LoadingCompo/LodingCompo';
+const AppLazy = lazy(() => import('./App'))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeModeProvider>
+      <Suspense fallback={<LodingCompo />}>
+        <AppLazy />
+      </Suspense>
+    </ThemeModeProvider>
   </React.StrictMode>
 );
 
