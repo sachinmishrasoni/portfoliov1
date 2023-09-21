@@ -22,7 +22,7 @@ const defaultDarkTheme = JSON.parse(localStorage.getItem('darkTheme')) || {
 // const defaultHighlight = localStorage.getItem('highlight') || '#79E0EE';
 
 
-const DarkThemBox = ({ darkThemeColors, getUserDarkTheme }) => {
+const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, setIsNotiyOpen }) => {
     const consumer = useContext(ThemeModeContext);
     const theme = useTheme();
 
@@ -47,6 +47,7 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme }) => {
         const themeCol = findTheme[0].themeColors;
         themeChangerFunc({ ...themeCol, highlightColor: selectHighlight });
         setSelectedTheme({ themeName: selVal, themeColors: { ...themeCol, highlightColor: selectHighlight } });
+        setIsNotiyOpen(true);
     }
 
     // Highlight Function
@@ -54,6 +55,7 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme }) => {
         setSelectHighlight(e.target.value);
         changeHighlight(e.target.value);
         setSelectedTheme({ ...selectedTheme, themeColors: { ...selectedTheme.themeColors, highlightColor: e.target.value } })
+        setIsNotiyOpen(true);
     }
 
     useEffect(() => {

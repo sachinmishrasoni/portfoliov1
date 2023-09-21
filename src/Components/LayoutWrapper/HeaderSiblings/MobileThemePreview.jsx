@@ -7,7 +7,7 @@ const MobileThemePreview = () => {
         <>
             <Box sx={{ width: '90px', height: 'auto', backgroundColor: 'mypresetcolor.backgroundColor', color: 'white', fontSize: '0.5rem', position: 'relative', overflow: 'hidden', '& .MuiTypography-root': { fontSize: '0.5rem' } }}>
                 {/* Header */}
-                <Paper component={'header'} sx={{ backgroundColor: 'mypresetcolor.backgroundColor', padding: '0px 3px', fontVariant: 'small-caps', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Paper component={'header'} sx={{ backgroundColor: 'mypresetcolor.foregroundColor', padding: '0px 3px', fontVariant: 'small-caps', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderRadius: '0' }}>
                     <Stack display={'flex'} flexDirection={'row'} alignItems={'center'}>
                         <Avatar alt='Sam' src='https://img.freepik.com/premium-photo/cartoon-character-with-glasses-big-smile_800563-12452.jpg' sx={{ width: '12px', height: '12px' }} />
                         <Typography variant='caption' ml={0.3}>Sam</Typography>
@@ -17,7 +17,7 @@ const MobileThemePreview = () => {
                 </Paper>
                 {/* Section */}
                 <Box component={'section'} px={0.5} sx={{ overflowY: 'auto' }}>
-                    <Box lineHeight={1}>
+                    <Box lineHeight={1} color={'mypresetcolor.fontColor'}>
                         <Typography variant='caption' component={'div'} textAlign={'center'} fontWeight={'bold'}>Preview</Typography>
                         <Typography variant='caption' sx={{ lineHeight: '0px', textAlign: 'justify', wordBreak: 'break-all' }}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit ut aliquam, perspiciatis omnis ducimus fugiat numquam.</Typography>
                     </Box>
@@ -26,7 +26,7 @@ const MobileThemePreview = () => {
                     </Box>
                     {/* <Typography variant='caption' sx={{ lineHeight: '0px', textAlign: 'justify', wordBreak: 'break-all' }}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit ut aliquam, perspiciatis omnis ducimus fugiat numquam.</Typography> */}
                 </Box>
-                <Box component={'footer'} sx={{ width: '100%', backgroundColor: 'mypresetcolor.backgroundColor' }}>
+                <Box component={'footer'} sx={{ width: '100%', backgroundColor: 'mypresetcolor.foregroundColor' }}>
                     <Typography variant='caption' component={'div'} textAlign={'center'} sx={{ '&.MuiTypography-root': { fontSize: '0.5rem' } }}>Copyright@Sam</Typography>
                 </Box>
             </Box>
