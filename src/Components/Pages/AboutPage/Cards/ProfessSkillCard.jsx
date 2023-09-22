@@ -20,27 +20,11 @@ const ProfessSkillCard = ({ data }) => {
                     '& .upper-circle': {
                         filter: `drop-shadow(1px 1px 3px ${theme.palette.mypresetcolor.highlightColor})`,
                     },
-                    // '&:hover': {
-                    //     backgroundColor: 'mypresetcolor.highlightColor',
-                    //     color: 'mypresetcolor.backgroundColor',
-                    //     boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.5)',
-                    //     transition: 'all 0.3s ease-in'
-                    // },
-                    // '&:hover .lower-circle': {
-                    //     color: 'gray',
-                    // },
-                    // '&:hover .upper-circle': {
-                    //     color: 'mypresetcolor.backgroundColor',
-                    //     filter: `drop-shadow(1px 1px 2px ${theme.palette.mypresetcolor.backgroundColor})`,
-                    // },
-                    // '&:hover .card-icon': {
-                    //     color: 'mypresetcolor.backgroundColor',
-                    // }
                 }}
             >
                 {/* Circle Status Bar */}
-                <Stack width={'100%'} display={'flex'} flexDirection={{xxs: 'row', sm: 'column'}} justifyContent={{xxs: 'flex-start', sm: 'center'}} alignItems={'center'} gap={1} p={1}>
-                    <Box component={'span'} sx={{ width: '85px', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Stack width={'100%'} display={'flex'} flexDirection={{xxs: 'column', sm: 'column'}} justifyContent={{xxs: 'flex-start', sm: 'center'}} alignItems={'center'} gap={1} p={1}>
+                    <Box component={'span'} sx={{ width: '75px', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Box sx={{ color: 'mypresetcolor.highlightColor', zIndex: '3', position: 'absolute', display: 'flex', justifyContent: 'center', alignItems: 'center', '& .MuiSvgIcon-root': {fontSize: '2.5rem'} }}>
                             <data.skillIcon className='card-icon' />
                         </Box>
@@ -48,7 +32,7 @@ const ProfessSkillCard = ({ data }) => {
                             className='lower-circle'
                             variant="determinate"
                             thickness={4}
-                            size={85}
+                            size={75}
                             value={100}
                             sx={{
                                 color: (theme) =>
@@ -58,7 +42,7 @@ const ProfessSkillCard = ({ data }) => {
                         <CircularProgress
                             className='upper-circle'
                             variant="determinate"
-                            size={85}
+                            size={75}
                             thickness={4}
                             value={skillPercen}
                             sx={{

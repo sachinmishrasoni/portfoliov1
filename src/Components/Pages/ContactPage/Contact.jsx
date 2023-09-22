@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Button, Container, Grid, Paper, Stack, TextField, Typography } from '@mui/material';
 import Heading from '../../GlobalComponents/Heading';
 import { ContactsTwoTone } from '@mui/icons-material';
@@ -10,8 +10,75 @@ import ContactIconImg from '../../../Image/Contact3dimg.png';
 import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFramer';
 import TranslateXFramer from '../../GlobalComponents/AnimatedCompo/TranslateXFramer';
 import TextEffectFramer from '../../GlobalComponents/AnimatedCompo/TextEffectFramer';
+import ConfirmDialog from './ConfirmDialog';
+import SnackBar from './SnackBar';
+// Regular Expression
+const fullName_Exp = /^[A-Za-z ]{2,50}$/;
+const emailId_Exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const mobileNumber_Exp = /^[6-9][0-9]{9}$/;
+const message_Exp = /^[A-Za-z ]{2,}$/;
 
 const Contact = () => {
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [snackBarProps, setSnackBarprops] = useState({
+        isOpen: false,
+        alertType: 'info',
+        message: 'Successflly Submit.'
+    });
+    const [userContactData, setUserContactData] = useState({
+        full_name: '',
+        email_id: '',
+        mob_num: '',
+        message: ''
+    });
+    const { full_name, email_id, mob_num, message } = userContactData;
+
+    const [isValid, setIsValid] = useState({
+        isFullNameValid: true,
+        isEmailIdValid: true,
+        isMobNumValid: true,
+        isMessageValid: true
+    });
+    const { isFullNameValid, isEmailIdValid, isMobNumValid, isMessageValid } = isValid;
+
+    const userInputHandler = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        if (name === 'full_name') {
+            if (fullName_Exp.test(value)) setIsValid({ ...isValid, isFullNameValid: true });
+            else setIsValid({ ...isValid, isFullNameValid: false });
+        } else if (name === 'email_id') {
+            if (emailId_Exp.test(value)) setIsValid({ ...isValid, isEmailIdValid: true });
+            else setIsValid({ ...isValid, isEmailIdValid: false });
+        } else if (name === 'mob_num') {
+            if (mobileNumber_Exp.test(value)) setIsValid({ ...isValid, isMobNumValid: true });
+            else setIsValid({ ...isValid, isMobNumValid: false });
+        } else if (name === 'message') {
+            if (message_Exp.test(value)) setIsValid({ ...isValid, isMessageValid: true });
+            else setIsValid({ ...isValid, isMessageValid: false });
+        }
+        setUserContactData({ ...userContactData, [name]: value });
+    };
+
+    const SubmitBtnFunc = () => {
+        const isDataEmpty = Object.values(userContactData).map((userObjVal) => userObjVal.trim() !== '');
+        const isAnyError = Object.values(isValid);
+        if (isDataEmpty.every((val) => val === true && isAnyError.every((val) => val === true))) {
+            console.log('Submit Done');
+            console.log(userContactData);
+            setIsDialogOpen(true);
+        } else {
+            setSnackBarprops({...snackBarProps, isOpen: true, alertType: 'info', message: 'Fill the Form Correctly.'});
+        }
+    };
+
+    // for Dialog
+    const ConfirmDoneBtn = () => {
+        setUserContactData({ ...userContactData, full_name: '', email_id: '', mob_num: '', message: '' });
+        setSnackBarprops({...snackBarProps, isOpen: true, alertType: 'success', message: 'Submitted Successfully'});
+    }
+
     return (
         <>
             <Box
@@ -25,9 +92,8 @@ const Contact = () => {
             >
                 <Container disableGutters >
                     <TranslateYFramer><Heading headingName={'Contact'} headingIcon={ContactsTwoTone} /></TranslateYFramer>
-                    {/* <Typography variant='h6' color={'gray'} textAlign={'center'}>Get In Touch</Typography> */}
                     <Grid container justifyContent={'space-between'} px={{ xxs: 1.5, lg: 0 }}>
-                        <Grid item xxs={12} sm={4} md={3} order={{ xxs: 1, sm: 1 }} sx={{ '& .transXframer-inner, .transXframer-outer': {height: '100%'}}}>
+                        <Grid item xxs={12} sm={4} md={3} order={{ xxs: 1, sm: 1 }} sx={{ '& .transXframer-inner, .transXframer-outer': { height: '100%' } }}>
                             <TranslateXFramer XVal='-100vw' durVal={1}>
                                 <Paper sx={{
                                     height: '100%',
@@ -67,9 +133,14 @@ const Contact = () => {
                                 <TranslateYFramer>
                                     <TextField
                                         fullWidth
-                                        label={'Full Name'}
-                                        // margin='dense'
                                         required
+                                        autoComplete='nope'
+                                        name='full_name'
+                                        label={'Full Name'}
+                                        value={full_name}
+                                        onChange={userInputHandler}
+                                        error={!isFullNameValid ? true : false}
+                                        helperText={!isFullNameValid ? "Oops Not Valid.!" : ''}
                                     />
                                 </TranslateYFramer>
 
@@ -78,38 +149,54 @@ const Contact = () => {
                                         <TextField
                                             fullWidth
                                             label={'Email Id'}
+                                            name='email_id'
                                             type='email'
                                             margin='dense'
                                             required
-
+                                            autoComplete='nope'
+                                            value={email_id}
+                                            onChange={userInputHandler}
+                                            error={!isEmailIdValid ? true : false}
+                                            helperText={!isEmailIdValid ? "Oops Not Valid.!" : ''}
                                         />
                                     </TranslateYFramer>
                                     <TranslateYFramer durVal={1.5}>
                                         <TextField
                                             fullWidth
+                                            name='mob_num'
                                             label={'Mobile Number'}
                                             margin='dense'
+                                            autoComplete='nope'
                                             required
+                                            value={mob_num}
+                                            onChange={userInputHandler}
+                                            error={!isMobNumValid ? true : false}
+                                            helperText={!isMobNumValid ? "Oops Not Valid.!" : ''}
                                         />
                                     </TranslateYFramer>
                                 </Stack>
                                 <TranslateYFramer durVal={2}>
                                     <TextField
                                         fullWidth
+                                        name='message'
                                         label={'Message'}
                                         multiline
-                                        // rows={11}
                                         margin='dense'
+                                        autoComplete='nope'
                                         required
+                                        value={message}
+                                        onChange={userInputHandler}
+                                        error={!isMessageValid ? true : false}
+                                        helperText={!isMessageValid ? "Oops Not Valid.!" : ''}
                                         sx={{
                                             '& .MuiInputBase-root .MuiInputBase-input': {
-                                                height: { xxs: '200px !important', sm: '190px !important', md: '258px !important' }
+                                                height: { xxs: '200px !important', sm: '190px !important', md: '260px !important' }
                                             }
                                         }}
                                     />
                                 </TranslateYFramer>
-                                <TranslateYFramer durVal={2}>
-                                    <Button variant='contained' fullWidth sx={{ mt: 1, }}>Submit</Button>
+                                <TranslateYFramer durVal={1.5}>
+                                    <Button variant='contained' fullWidth sx={{ mt: 0.8, }} onClick={SubmitBtnFunc}>Submit</Button>
                                 </TranslateYFramer>
                             </form>
                         </Grid>
@@ -122,6 +209,9 @@ const Contact = () => {
                         </Grid>
 
                     </Grid>
+                    {/*  */}
+                    <ConfirmDialog isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} ConfirmDoneBtn={ConfirmDoneBtn} />
+                    <SnackBar snackBarProps={snackBarProps} setSnackBarprops={setSnackBarprops} />
                 </Container>
             </Box>
         </>

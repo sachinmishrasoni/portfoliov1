@@ -138,7 +138,7 @@ const SkillSection = () => {
                     <Stack className='professional-skills-box' mb={1}>
                         <Typography variant='body1' fontWeight={'bold'}>Professional Skills :</Typography>
 
-                        <Stack mt={1} sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(175px, 1fr))', gap: 1 }}>
+                        <Stack mt={1} sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 1 }}>
                             {
                                 profesSkillsData.map((items, index) => <SkillCard1Framer key={index} dVal={index+1/2}><ProfessSkillCard data={items} /></SkillCard1Framer>)
                             }

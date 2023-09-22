@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 
 const SkillCard1Framer = ({children, dVal=0.5}) => {
     const control = useAnimation();
-    const [ref, inView] = useInView({ threshold: 0.6 });
+    const [ref, inView] = useInView({ threshold: 0.3 });
 
     useEffect(() => {
         if (inView) {
