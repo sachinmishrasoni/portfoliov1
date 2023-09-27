@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/Sam_Portfolio_01/static/css/main.7802d7ca.css",
-    "main.js": "/Sam_Portfolio_01/static/js/main.94f1e022.js",
-    "static/css/95.0105a430.chunk.css": "/Sam_Portfolio_01/static/css/95.0105a430.chunk.css",
-    "static/js/95.7b027d00.chunk.js": "/Sam_Portfolio_01/static/js/95.7b027d00.chunk.js",
+    "main.js": "/Sam_Portfolio_01/static/js/main.ca7dcffc.js",
+    "static/css/937.4bded650.chunk.css": "/Sam_Portfolio_01/static/css/937.4bded650.chunk.css",
+    "static/js/937.4d5af05c.chunk.js": "/Sam_Portfolio_01/static/js/937.4d5af05c.chunk.js",
     "static/js/787.1ed0c42c.chunk.js": "/Sam_Portfolio_01/static/js/787.1ed0c42c.chunk.js",
-    "static/js/855.06fb643e.chunk.js": "/Sam_Portfolio_01/static/js/855.06fb643e.chunk.js",
+    "static/js/803.7623b777.chunk.js": "/Sam_Portfolio_01/static/js/803.7623b777.chunk.js",
     "static/media/Contact3dimg.png": "/Sam_Portfolio_01/static/media/Contact3dimg.1446628135364fb6dd2c.png",
     "static/media/Subject.png": "/Sam_Portfolio_01/static/media/Subject.0d0deb377979d88386a0.png",
     "static/media/graphic-design1.png": "/Sam_Portfolio_01/static/media/graphic-design1.8908ebb14f361b2697f7.png",
@@ -14,18 +14,19 @@
     "static/media/MyDp.jpg": "/Sam_Portfolio_01/static/media/MyDp.74e6d3c66b7e66659bce.jpg",
     "static/media/web-development.png": "/Sam_Portfolio_01/static/media/web-development.d5777521201f8028dd8f.png",
     "static/media/app-development.png": "/Sam_Portfolio_01/static/media/app-development.57fb9e2de2565c391127.png",
+    "static/media/transparentImg01.jpg": "/Sam_Portfolio_01/static/media/transparentImg01.bbb6c31c49bc0d9aeea5.jpg",
     "static/media/Banner01.jpeg": "/Sam_Portfolio_01/static/media/Banner01.a3d69c8fc0ae95050f77.jpeg",
     "static/media/Banner02.jpg": "/Sam_Portfolio_01/static/media/Banner02.a8524e4dd242ae3f0d15.jpg",
     "index.html": "/Sam_Portfolio_01/index.html",
     "main.7802d7ca.css.map": "/Sam_Portfolio_01/static/css/main.7802d7ca.css.map",
-    "main.94f1e022.js.map": "/Sam_Portfolio_01/static/js/main.94f1e022.js.map",
-    "95.0105a430.chunk.css.map": "/Sam_Portfolio_01/static/css/95.0105a430.chunk.css.map",
-    "95.7b027d00.chunk.js.map": "/Sam_Portfolio_01/static/js/95.7b027d00.chunk.js.map",
+    "main.ca7dcffc.js.map": "/Sam_Portfolio_01/static/js/main.ca7dcffc.js.map",
+    "937.4bded650.chunk.css.map": "/Sam_Portfolio_01/static/css/937.4bded650.chunk.css.map",
+    "937.4d5af05c.chunk.js.map": "/Sam_Portfolio_01/static/js/937.4d5af05c.chunk.js.map",
     "787.1ed0c42c.chunk.js.map": "/Sam_Portfolio_01/static/js/787.1ed0c42c.chunk.js.map",
-    "855.06fb643e.chunk.js.map": "/Sam_Portfolio_01/static/js/855.06fb643e.chunk.js.map"
+    "803.7623b777.chunk.js.map": "/Sam_Portfolio_01/static/js/803.7623b777.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7802d7ca.css",
-    "static/js/main.94f1e022.js"
+    "static/js/main.ca7dcffc.js"
   ]
 }
