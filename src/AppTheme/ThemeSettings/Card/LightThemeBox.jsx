@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Box, IconButton, MenuItem, Paper, Select, Stack, Tooltip, Typography, styled, useTheme } from '@mui/material';
 import { Add, Delete, DoneOutline } from '@mui/icons-material';
 import { ThemeModeContext } from '../../ThemeModeProvider';
+import TakeThemeDialog from '../TakingColor/TakeThemeDialog';
+import ThemeConfirmationDialog from '../TakingColor/ThemeConfirmationDialog';
 
 const BulletPaper = styled(Paper)(({ theme }) => ({
     width: '20px',
@@ -19,14 +21,19 @@ const defaultLightTheme = JSON.parse(localStorage.getItem('lightTheme')) || {
         fontColor: '#27374D',
     }
 };
-// const defaultHighlight = localStorage.getItem('highlight') || '#79E0EE';
+const userAddedThemeLclS = JSON.parse(localStorage.getItem('userAddedLightTheme')) || [];
+const userAddedHighlightLclSrg = JSON.parse(localStorage.getItem('userAddedLightHighlight')) || [];
 
-
-const LightThemeBox = ({ lightThemeColors, getUserLightTheme, setIsNotiyOpen }) => {
+const LightThemeBox = ({ lightThemeColors, getUserLightTheme, changeThemeHighlightFunc }) => {
     const consumer = useContext(ThemeModeContext);
+    const { changeHighlight, themeChangerFunc } = consumer.presetFun;
     const theme = useTheme();
 
-    const { changeHighlight, themeChangerFunc } = consumer.presetFun;
+    const [userAddedTheme, setUserAddedTheme] = useState(userAddedThemeLclS);
+    const [userAddedHiglight, setUserAddedHighlight] = useState(userAddedHighlightLclSrg);
+    const [newLightThemePresets, setNewLightThemePresets] = useState([...lightThemeColors.themePresets, ...userAddedTheme]);
+    const [newThemeHighlight, setNewThemeHighlight] = useState([...lightThemeColors.themeHighlight, ...userAddedHiglight]);
+
     const [selectTheme, setSelectTheme] = useState(defaultLightTheme.themeName);
     const [selectHighlight, setSelectHighlight] = useState(defaultLightTheme.themeColors.highlightColor);
     const [selectedTheme, setSelectedTheme] = useState({
@@ -39,15 +46,19 @@ const LightThemeBox = ({ lightThemeColors, getUserLightTheme, setIsNotiyOpen }) 
         }
     });
 
+    const [isThemeDialogOpen, setIsThemeDialogOpen] = useState(false);
+    const addThemeCounter = newLightThemePresets.length - lightThemeColors.themePresets.length + 1;
+    const [isConfirmation, setIsConfirmation] = useState(false);
+
     // Theme Preset Function
     const selectThemePresetFunc = (e) => {
         const selVal = e.target.value;
         setSelectTheme(selVal);
-        const findTheme = lightThemeColors.themePresets.filter(preset => preset.themeName === selVal);
+        const findTheme = newLightThemePresets.filter(preset => preset.themeName === selVal);
         const themeCol = findTheme[0].themeColors;
         themeChangerFunc({ ...themeCol, highlightColor: selectHighlight });
         setSelectedTheme({ themeName: selVal, themeColors: { ...themeCol, highlightColor: selectHighlight } });
-        setIsNotiyOpen(true);
+        changeThemeHighlightFunc('theme');  // when change theme then call this func and show snackbar message
     }
 
     // Highlight Function
@@ -55,7 +66,7 @@ const LightThemeBox = ({ lightThemeColors, getUserLightTheme, setIsNotiyOpen }) 
         setSelectHighlight(e.target.value);
         changeHighlight(e.target.value);
         setSelectedTheme({ ...selectedTheme, themeColors: { ...selectedTheme.themeColors, highlightColor: e.target.value } });
-        setIsNotiyOpen(true);
+        changeThemeHighlightFunc('highlight');      // when change highlight then show snackbar message
     }
 
     useEffect(() => {
@@ -64,16 +75,52 @@ const LightThemeBox = ({ lightThemeColors, getUserLightTheme, setIsNotiyOpen }) 
         }
         // eslint-disable-next-line
     }, [selectedTheme]);
+
+    // Add Theme Btn 
+    const addthemeBtn = () => {
+        setIsThemeDialogOpen(true);
+    };
+
+    const userThemeTakingFunc = (themePre, newHighlight) => {
+        let allPrestName = newLightThemePresets.map((preset) => preset.themeName);
+        if (!allPrestName.includes(themePre.themeName)) {
+            setNewLightThemePresets([...newLightThemePresets, themePre]);
+            setNewThemeHighlight([...newThemeHighlight, newHighlight]);
+            setIsConfirmation(true);
+            setUserAddedTheme([...userAddedTheme, themePre]);
+            localStorage.setItem('userAddedLightTheme', JSON.stringify([...userAddedTheme, themePre]));
+            setUserAddedHighlight([...userAddedHiglight, newHighlight]);
+            localStorage.setItem('userAddedLightHighlight', JSON.stringify([...userAddedHiglight, newHighlight]));
+        } else {
+            console.log('Theme already Exits')
+        }
+
+    };
+
+    const themeApplyBtnFunc = () => {
+        let themePreLastIndex = newLightThemePresets.length - 1;
+        let highlightLastIndex = newThemeHighlight.length - 1;
+        let userTheme = newLightThemePresets[themePreLastIndex];
+        let userhighlight = newThemeHighlight[highlightLastIndex];
+        const userThemeColors = userTheme.themeColors;
+        setSelectTheme(userTheme.themeName)
+        themeChangerFunc({ ...userThemeColors, highlightColor: userhighlight });
+        setSelectHighlight(userhighlight);
+        localStorage.setItem('lightTheme', JSON.stringify({ themeName: userTheme.themeName, themeColors: { ...userThemeColors, highlightColor: userhighlight } }));
+        setIsConfirmation(false);
+
+    };
+
     return (
         <>
-            <Box className='lightTheme-boxCard' sx={{ padding: 1, m: 1, border: '1px solid gray', borderRadius: '10px', backdropFilter: 'blur(5px)' }}>
+            <Box className='lightTheme-boxCard' sx={{ padding: 1, m: 1, border: '1px solid', borderColor: 'mypresetcolor.highlightColor', borderRadius: '10px', backdropFilter: 'blur(5px)' }}>
                 {/* Theme Selection */}
                 <Box className='theme-select-box' >
                     <Stack mb={0.5} display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
                         <Typography variant='body1' color={'mypresetcolor.fontColor'}>Theme Presets :</Typography>
                         {/* Add Theme Button */}
                         <Tooltip title={'Add Theme'} >
-                            <IconButton size='small' >
+                            <IconButton size='small' onClick={() => addthemeBtn()}>
                                 <Add fontSize='small' />
                             </IconButton>
                         </Tooltip>
@@ -91,7 +138,7 @@ const LightThemeBox = ({ lightThemeColors, getUserLightTheme, setIsNotiyOpen }) 
                         }}
                     >
                         {
-                            lightThemeColors.themePresets.map((item, index) =>
+                            newLightThemePresets.map((item, index) =>
                                 <MenuItem key={index} value={item.themeName} sx={{ justifyContent: 'space-between' }}>
                                     {item.themeName}
                                     <Box className='color-boxes' display={'flex'} flexDirection={'row'} gap={0.25}>
@@ -131,7 +178,7 @@ const LightThemeBox = ({ lightThemeColors, getUserLightTheme, setIsNotiyOpen }) 
                         }}
                     >
                         {
-                            lightThemeColors.themeHighlight.map((item, ind) =>
+                            newThemeHighlight.map((item, ind) =>
                                 <MenuItem
                                     key={ind}
                                     value={`${item}`}
@@ -176,6 +223,14 @@ const LightThemeBox = ({ lightThemeColors, getUserLightTheme, setIsNotiyOpen }) 
                     </Select>
                 </Box>
             </Box>
+
+            {/* Take Theme Colors Dialog */}
+            {
+                isThemeDialogOpen && (
+                    <TakeThemeDialog isThemeDialogOpen={isThemeDialogOpen} setIsThemeDialogOpen={setIsThemeDialogOpen} userThemeTakingFunc={userThemeTakingFunc} addThemeCounter={addThemeCounter} />
+                )
+            }
+            <ThemeConfirmationDialog isConfirmation={isConfirmation} setIsConfirmation={setIsConfirmation} themeApplyBtnFunc={themeApplyBtnFunc} />
         </>
     )
 }

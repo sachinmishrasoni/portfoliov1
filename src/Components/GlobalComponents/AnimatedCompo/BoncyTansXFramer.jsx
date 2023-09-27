@@ -27,7 +27,7 @@ const BoncyTransXFramer = ({ children, XVal='100vw', durVal=1 }) => {
                 deley: 0.5,
                 duration: durVal,
                 type: 'spring',
-                stiffness: 100
+                stiffness: 50
             }
         }
     };

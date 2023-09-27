@@ -8,7 +8,8 @@ import { ThemeModeContext } from '../ThemeModeProvider';
 import PreviewBox from '../../Components/LayoutWrapper/HeaderSiblings/PreviewBox';
 import BoncyTransXFramer from '../../Components/GlobalComponents/AnimatedCompo/BoncyTansXFramer';
 import BtnHoverFramer from '../../Components/GlobalComponents/AnimatedCompo/BtnHoverFramer';
-import SnackBar from '../../Components/GlobalComponents/SnackBar';
+import NotifySnackBar from '../../Components/GlobalComponents/NotifySnackBar';
+
 
 // Swich Styling
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -87,7 +88,11 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
     const [isDarkModeActive, setIsDarkModeActive] = useState(checkmode);     // For Toggle Button
     const [selectUserDarkTheme, setSelectUserDarkTheme] = useState({ ...defaultDarkTheme });
     const [selectUserLightTheme, setSelectUserLightTheme] = useState({ ...defaultLightTheme });
-    const [isThemeNotifiOpen, setIsThemeNotifiOpen] = useState(false);
+    const [notifyBarProps, setNotifyBarProps] = useState({
+        isOpen: false,
+        alertType: 'info',
+        message: ''
+    });
 
     const getUserDarkTheme = (val) => {
         setSelectUserDarkTheme(val)
@@ -111,7 +116,6 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
         if (isDarkModeActive === false) {
             themeChangerFunc({ ...selectUserDarkTheme.themeColors })
         } else {
-            console.log('lightThemeColors')
             themeChangerFunc({ ...selectUserLightTheme.themeColors })
         }
     }
@@ -157,6 +161,11 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
         window.location.reload(false);
         // console.log('reset')
     };
+
+    const changeThemeHighlightFunc = (val) => {
+        if(val === 'theme') setNotifyBarProps({...notifyBarProps, isOpen: true, message: 'Save Theme.'});
+        else setNotifyBarProps({...notifyBarProps, isOpen: true, message: 'Save Highlight.'});
+    }
     return (
         <>
             <SwipeableDrawer
@@ -166,7 +175,7 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                 onOpen={toggleDrawer('right', true)}
                 sx={{
                     '& > .MuiPaper-root': {
-                        backgroundColor: 'mypresetcolor.backgroundColor'
+                        backgroundColor: 'mypresetcolor.backgroundColor',
                     },
                     '& .MuiDrawer-paper': {
                         width: { xxs: '225px', xs: '250px', sm: '275px', md: '300px' },
@@ -180,8 +189,8 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                 <Box className='drawer-container'>
                     <Box component={'header'} className='drawer-header-box'>
                         <Stack px={1} py={1} display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
-                            <BoncyTransXFramer XVal='100vw' durVal={1}><Typography variant='h5' fontWeight={'bold'} color={'mypresetcolor.highlightColor'}>Settings</Typography></BoncyTransXFramer>
-                            <BoncyTransXFramer XVal='100vw' durVal={1}>
+                            <Typography variant='h5' fontWeight={'bold'} color={'mypresetcolor.highlightColor'}>Settings</Typography>
+                            <BoncyTransXFramer XVal='100vw' durVal={0.3}>
                                 <BtnHoverFramer>
                                     <Tooltip title={'Close'} >
                                         <IconButton onClick={() => setIsDrawerOpen(false)}>
@@ -233,12 +242,11 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                     >
                         <Box className={`fliper-inner-box ${isDarkModeActive ? '' : 'theme-box'}`}>
                             <Box className={'front-box'} >
-                                <DarkThemBox darkThemeColors={ThemeColors.darkThemeColors} getUserDarkTheme={getUserDarkTheme} setIsNotiyOpen={setIsThemeNotifiOpen}/>
+                                <DarkThemBox darkThemeColors={ThemeColors.darkThemeColors} getUserDarkTheme={getUserDarkTheme} changeThemeHighlightFunc={changeThemeHighlightFunc} />
                             </Box>
                             <Box className={'back-box'}>
-                                <LightThemeBox lightThemeColors={ThemeColors.lightThemeColors} getUserLightTheme={getUserLightTheme} setIsNotiyOpen={setIsThemeNotifiOpen}/>
+                                <LightThemeBox lightThemeColors={ThemeColors.lightThemeColors} getUserLightTheme={getUserLightTheme} changeThemeHighlightFunc={changeThemeHighlightFunc}/>
                             </Box>
-
                         </Box>
                     </Box>
 
@@ -262,7 +270,7 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                         <BtnHoverFramer><Button variant='contained' size='small' onClick={themeResetBtn}>RESet</Button></BtnHoverFramer>
                     </Stack>
                 </Box>
-                <SnackBar isOpen={isThemeNotifiOpen} setIsNotiyOpen={setIsThemeNotifiOpen}/>
+                <NotifySnackBar notifyBarProps={notifyBarProps} setNotifyBarProps={setNotifyBarProps}/>
             </SwipeableDrawer>
         </>
     )
