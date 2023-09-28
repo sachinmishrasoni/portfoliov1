@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/Sam_Portfolio_01/static/css/main.7802d7ca.css",
-    "main.js": "/Sam_Portfolio_01/static/js/main.ca7dcffc.js",
-    "static/css/937.4bded650.chunk.css": "/Sam_Portfolio_01/static/css/937.4bded650.chunk.css",
-    "static/js/937.4d5af05c.chunk.js": "/Sam_Portfolio_01/static/js/937.4d5af05c.chunk.js",
+    "main.js": "/Sam_Portfolio_01/static/js/main.99e2c85f.js",
+    "static/css/525.28930064.chunk.css": "/Sam_Portfolio_01/static/css/525.28930064.chunk.css",
+    "static/js/525.722956da.chunk.js": "/Sam_Portfolio_01/static/js/525.722956da.chunk.js",
     "static/js/787.1ed0c42c.chunk.js": "/Sam_Portfolio_01/static/js/787.1ed0c42c.chunk.js",
-    "static/js/803.7623b777.chunk.js": "/Sam_Portfolio_01/static/js/803.7623b777.chunk.js",
+    "static/js/779.c6fd9c38.chunk.js": "/Sam_Portfolio_01/static/js/779.c6fd9c38.chunk.js",
     "static/media/Contact3dimg.png": "/Sam_Portfolio_01/static/media/Contact3dimg.1446628135364fb6dd2c.png",
     "static/media/Subject.png": "/Sam_Portfolio_01/static/media/Subject.0d0deb377979d88386a0.png",
     "static/media/graphic-design1.png": "/Sam_Portfolio_01/static/media/graphic-design1.8908ebb14f361b2697f7.png",
@@ -19,14 +19,14 @@
     "static/media/Banner02.jpg": "/Sam_Portfolio_01/static/media/Banner02.a8524e4dd242ae3f0d15.jpg",
     "index.html": "/Sam_Portfolio_01/index.html",
     "main.7802d7ca.css.map": "/Sam_Portfolio_01/static/css/main.7802d7ca.css.map",
-    "main.ca7dcffc.js.map": "/Sam_Portfolio_01/static/js/main.ca7dcffc.js.map",
-    "937.4bded650.chunk.css.map": "/Sam_Portfolio_01/static/css/937.4bded650.chunk.css.map",
-    "937.4d5af05c.chunk.js.map": "/Sam_Portfolio_01/static/js/937.4d5af05c.chunk.js.map",
+    "main.99e2c85f.js.map": "/Sam_Portfolio_01/static/js/main.99e2c85f.js.map",
+    "525.28930064.chunk.css.map": "/Sam_Portfolio_01/static/css/525.28930064.chunk.css.map",
+    "525.722956da.chunk.js.map": "/Sam_Portfolio_01/static/js/525.722956da.chunk.js.map",
     "787.1ed0c42c.chunk.js.map": "/Sam_Portfolio_01/static/js/787.1ed0c42c.chunk.js.map",
-    "803.7623b777.chunk.js.map": "/Sam_Portfolio_01/static/js/803.7623b777.chunk.js.map"
+    "779.c6fd9c38.chunk.js.map": "/Sam_Portfolio_01/static/js/779.c6fd9c38.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7802d7ca.css",
-    "static/js/main.ca7dcffc.js"
+    "static/js/main.99e2c85f.js"
   ]
 }
