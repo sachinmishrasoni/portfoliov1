@@ -133,38 +133,21 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
     }
     const themeResetBtn = () => {
         if (isDarkModeActive === false) toggleThemeMode();
-        themeChangerFunc({
-            backgroundColor: '#151922',
-            foregroundColor: '#1C1F24',
-            highlightColor: '#79E0EE',
-            fontColor: '#FFFFFF',
-        });
-        localStorage.setItem('darkTheme', JSON.stringify({
-            themeName: 'Default Dark',
-            themeColors: {
-                backgroundColor: '#151922',
-                foregroundColor: '#1C1F24',
-                highlightColor: '#79E0EE',
-                fontColor: '#FFFFFF',
-            }
-        }));
-        localStorage.setItem('lightTheme', JSON.stringify({
-            themeName: 'Default Light',
-            themeColors: {
-                backgroundColor: '#F3FDE8',
-                foregroundColor: '#96B6C5',
-                highlightColor: '#79E0EE',
-                fontColor: '#27374D',
-            }
-        }));
+        localStorage.removeItem('darkTheme');
+        localStorage.removeItem('lightTheme');
         setIsDrawerOpen(false);
         window.location.reload(false);
-        // console.log('reset')
     };
 
     const changeThemeHighlightFunc = (val) => {
         if(val === 'theme') setNotifyBarProps({...notifyBarProps, isOpen: true, message: 'Save Theme.'});
         else setNotifyBarProps({...notifyBarProps, isOpen: true, message: 'Save Highlight.'});
+    }
+
+    const clearAllBtnFunc = () => {
+        localStorage.clear();
+        setIsDrawerOpen(false);
+        window.location.reload(false);
     }
     return (
         <>
@@ -178,7 +161,7 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                         backgroundColor: 'mypresetcolor.backgroundColor',
                     },
                     '& .MuiDrawer-paper': {
-                        width: { xxs: '225px', xs: '250px', sm: '275px', md: '300px' },
+                        width: { xxs: '225px', xs: '275px', md: '300px' },
                         overflow: 'hidden'
                     },
                     '& .MuiBackdrop-root': {
@@ -218,7 +201,7 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                     <Box className='fliper-outer-box'
                         sx={{
                             width: '100%',
-                            height: '200px',
+                            height: '185px',
                             perspective: '1000px',
                             '& .fliper-inner-box': {
                                 width: '100%',
@@ -242,13 +225,23 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                     >
                         <Box className={`fliper-inner-box ${isDarkModeActive ? '' : 'theme-box'}`}>
                             <Box className={'front-box'} >
-                                <DarkThemBox darkThemeColors={ThemeColors.darkThemeColors} getUserDarkTheme={getUserDarkTheme} changeThemeHighlightFunc={changeThemeHighlightFunc} />
+                                <DarkThemBox darkThemeColors={ThemeColors.darkThemeColors} getUserDarkTheme={getUserDarkTheme} changeThemeHighlightFunc={changeThemeHighlightFunc} setIsDrawerOpen={setIsDrawerOpen}/>
                             </Box>
                             <Box className={'back-box'}>
-                                <LightThemeBox lightThemeColors={ThemeColors.lightThemeColors} getUserLightTheme={getUserLightTheme} changeThemeHighlightFunc={changeThemeHighlightFunc}/>
+                                <LightThemeBox lightThemeColors={ThemeColors.lightThemeColors} getUserLightTheme={getUserLightTheme} changeThemeHighlightFunc={changeThemeHighlightFunc} setIsDrawerOpen={setIsDrawerOpen}/>
                             </Box>
                         </Box>
                     </Box>
+                    {/* Font Varients */}
+                    {/* <Stack p={1}>
+                        <Typography>Font Varients:</Typography>
+                        <Select
+                            size='small'
+                            fullWidth
+                        >
+
+                        </Select>
+                    </Stack> */}
 
                     <Box p={1}>
                         <PreviewBox />
@@ -268,6 +261,11 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                     }}>
                         <BtnHoverFramer><Button variant='contained' size='small' onClick={themeSetBtn} >Save</Button></BtnHoverFramer>
                         <BtnHoverFramer><Button variant='contained' size='small' onClick={themeResetBtn}>RESet</Button></BtnHoverFramer>
+                    </Stack>
+
+                    <Stack width={'100%'} p={1} position={'absolute'} bottom={0}>
+                        <Typography variant='caption'>Clear all added theme preset and highlighs.</Typography>
+                        <Button variant='outlined' size='small' onClick={() => clearAllBtnFunc()}>Clear All</Button>
                     </Stack>
                 </Box>
                 <NotifySnackBar notifyBarProps={notifyBarProps} setNotifyBarProps={setNotifyBarProps}/>

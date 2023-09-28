@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Box } from '@mui/material';
 
 const FliperCard = ({ cardWidth='250px', cardHeight='150px', rotatePosition='x', frontComponent, backComponent }) => {

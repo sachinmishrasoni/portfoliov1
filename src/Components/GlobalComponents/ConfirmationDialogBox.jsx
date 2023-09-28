@@ -5,13 +5,25 @@ import { Info } from '@mui/icons-material';
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="right" ref={ref} {...props} />;
 });
-
-const ThemeConfirmationDialog = ({isConfirmation, setIsConfirmation, themeApplyBtnFunc}) => {
+/*
+    This state use where this component use: 
+    1. const [confirmationProps, setConfirmationProps] = useState({
+        isOpen: true/false,
+        infoMess: 'Successfully added.',
+        message: '',
+        doneBtnName: 'Yes',
+        closeBtnName: 'NO'
+    });
+    ***************************
+    when click the done Btn then call this
+    2. confirmDoneBtnFunc  // This will be a function.
+*/
+const ConfirmationDialogBox = ({ confirmationProps, setConfirmationProps, confirmDoneBtnFunc }) => {
     const theme = useTheme();
     return (
         <>
             <Dialog
-                open={isConfirmation}
+                open={confirmationProps.isOpen}
                 TransitionComponent={Transition}
                 keepMounted
                 // onClose={() => setIsDialogOpen(false)}
@@ -44,14 +56,13 @@ const ThemeConfirmationDialog = ({isConfirmation, setIsConfirmation, themeApplyB
             >
                 <Box p={2}>
                     <Stack display={'flex'} flexDirection={'column'} alignItems={'center'}>
-                        <Info sx={{fontSize: '3rem'}}/>
-                        <Typography variant='h6' fontWeight={'bold'} color={'green'}>Successfully Theme Added!</Typography>
-                        <Typography>Would you like to apply the theme you just added?</Typography>
-                        {/* <Button variant='outlined' size='small' sx={{fontWeight: 'bold'}}>Apply Theme</Button> */}
+                        <Info sx={{ fontSize: '3rem' }} />
+                        <Typography variant='h6' fontWeight={'bold'} color={'green'}>{confirmationProps.infoMess}</Typography>
+                        <Typography textAlign={'center'}>{confirmationProps.message}</Typography>
                     </Stack>
                     <Stack display={'flex'} flexDirection={'row-reverse'} justifyContent={'space-between'} mt={2}>
-                        <Button variant='contained' size='small' onClick={() => setIsConfirmation(false)}>No</Button>
-                        <Button variant='contained' size='small' onClick={() => themeApplyBtnFunc()}>Yes</Button>
+                        <Button variant='contained' size='small' onClick={() => setConfirmationProps({...confirmationProps, isOpen: false})}>{confirmationProps.closeBtnName}</Button>
+                        <Button variant='contained' size='small' onClick={() => confirmDoneBtnFunc(confirmationProps.whatChange)}>{confirmationProps.doneBtnName}</Button>
                     </Stack>
                 </Box>
             </Dialog >
@@ -59,4 +70,4 @@ const ThemeConfirmationDialog = ({isConfirmation, setIsConfirmation, themeApplyB
     )
 }
 
-export default ThemeConfirmationDialog;
+export default ConfirmationDialogBox;

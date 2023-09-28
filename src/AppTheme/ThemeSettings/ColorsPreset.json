@@ -1,0 +1,14 @@
+{
+    "darkThemePreset": {
+        "backgroundPreset": ["#040D12"],
+        "foregroundPreset": ["#183D3D"],
+        "highlightPreset": ["#5C8374"],
+        "fontPreset": ["#FFFFFF", "#93B1A6"]
+    },
+    "lightThemePreset": {
+        "foregroundPreset": ["#93B1A6"],
+        "defaultforegroundcolors": ["#5C8374"],
+        "highlightPreset": ["#183D3D"],
+        "fontPreset": ["#000000", "#040D12"]
+    }
+}

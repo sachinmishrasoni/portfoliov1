@@ -3,6 +3,7 @@ import { Box, Button, Dialog, IconButton, Paper, Slide, Stack, TextField, Typogr
 import TransparentImg from '../../../Image/transparentImg01.jpg';
 import ColorPickerDialog from './ColorPickerDialog';
 import NotifySnackBar from '../../../Components/GlobalComponents/NotifySnackBar';
+import ColorsPreset from '../ColorsPreset.json';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="left" ref={ref} {...props} />;
@@ -33,17 +34,10 @@ const RoundedPaper = styled(Paper)(({ theme }) => ({
     }
 }));
 
-const defaultThemeColors = {
-    forBackground: ['#451952',],
-    forForeground: ['#662549'],
-    forHighlight: ['#AE445A'],
-    forFont: ['#F39F5A'],
-};
-
 const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTakingFunc, addThemeCounter }) => {
     const theme = useTheme();
     const defaultThemeName = theme.palette.mode === 'dark'? `Untitle${addThemeCounter} Dark` : `Untitle${addThemeCounter} Light`;
-    const [defaultColors, setDefaultColors] = useState();
+    const defaultColorsPreset = theme.palette.mode === 'dark'? ColorsPreset.darkThemePreset : ColorsPreset.lightThemePreset;
     const [userThemeName, setUserThemeName] = useState(defaultThemeName);
     const [userThemeColors, setUserThemeColor] = useState({
         backgroundColor: '',
@@ -53,14 +47,17 @@ const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTak
     });
     const { backgroundColor, foregroundColor, highlightColor, fontColor } = userThemeColors;
     const [activeBtnBox, setActiveBtnBox] = useState('background');
-    const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
-    const [whichBoxColor, setWhichBoxColor] = useState('');
     const [notifyBarProps, setNotifyBarProps] = useState({
         isOpen: false,
         alertType: 'info',
         message: ''
     });
+    const [colorPickerProps, setColorPickerProps] = useState({
+        isOpen: false,
+        whichColorBox: '',
+        defaultColors: [],
 
+    }); 
 
 
     const titlerHandler = (e) => {
@@ -70,25 +67,20 @@ const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTak
     const colorBoxBtnFunc = (whichbox) => {
         if (whichbox === 'background') {
             setActiveBtnBox('background');
-            setWhichBoxColor('Background');
-            setDefaultColors(defaultThemeColors.forBackground);
+            setColorPickerProps({...colorPickerProps, isOpen: true, whichColorBox: 'Background', defaultColors: defaultColorsPreset.backgroundPreset});
         }
         else if (whichbox === 'foreground') {
             setActiveBtnBox('foreground');
-            setWhichBoxColor('Foreground');
-            setDefaultColors(defaultThemeColors.forForeground);
+            setColorPickerProps({...colorPickerProps, isOpen: true, whichColorBox: 'Foreground', defaultColors: defaultColorsPreset.foregroundPreset});
         }
         else if (whichbox === 'highlight') {
             setActiveBtnBox('highlight');
-            setWhichBoxColor('Highlight');
-            setDefaultColors(defaultThemeColors.forHighlight);
+            setColorPickerProps({...colorPickerProps, isOpen: true, whichColorBox: 'Highlight', defaultColors: defaultColorsPreset.highlightPreset});
         }
         else {
             setActiveBtnBox('font');
-            setWhichBoxColor('Font');
-            setDefaultColors(defaultThemeColors.forFont);
+            setColorPickerProps({...colorPickerProps, isOpen: true, whichColorBox: 'Font', defaultColors: defaultColorsPreset.fontPreset});
         }
-        setIsColorPickerOpen(true);
     };
     const selectedColor = (colorVal, whichbox) => {
         if (whichbox === 'Background') {
@@ -191,7 +183,7 @@ const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTak
                 }}
             >
                 <Box p={2}>
-                    <Typography textAlign={'center'} variant='h5' fontWeight={'bold'} mb={2}>Select Theme</Typography>
+                    <Typography textAlign={'center'} variant='h5' fontWeight={'bold'} mb={2}>Add Theme</Typography>
                     <Stack display={'flex'} flexDirection={'row'} alignItems={'flex-end'} gap={1} mb={1}>
                         <Typography width={'200px'} variant='h6' >Theme Name: </Typography>
                         <TextField
@@ -239,7 +231,7 @@ const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTak
                     </Stack>
                 </Box>
                 <NotifySnackBar notifyBarProps={notifyBarProps} setNotifyBarProps={setNotifyBarProps} />
-                <ColorPickerDialog isColorPickerOpen={isColorPickerOpen} setIsColorPickerOpen={setIsColorPickerOpen} whichBoxColor={whichBoxColor} selectedColor={selectedColor} defaultColors={defaultColors} />
+                <ColorPickerDialog colorPickerProps={colorPickerProps} setColorPickerProps={setColorPickerProps} selectedColor={selectedColor} />
             </Dialog >
         </>
     )

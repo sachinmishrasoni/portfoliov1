@@ -3,7 +3,9 @@ import { Box, IconButton, MenuItem, Paper, Select, Stack, Tooltip, Typography, s
 import { Add, Delete, DoneOutline } from '@mui/icons-material';
 import { ThemeModeContext } from '../../ThemeModeProvider';
 import TakeThemeDialog from '../TakingColor/TakeThemeDialog';
-import ThemeConfirmationDialog from '../TakingColor/ThemeConfirmationDialog';
+import ColorPickerDialog from '../TakingColor/ColorPickerDialog';
+import ConfirmationDialogBox from '../../../Components/GlobalComponents/ConfirmationDialogBox';
+import ColorsPreset from '../ColorsPreset.json';
 
 const BulletPaper = styled(Paper)(({ theme }) => ({
     width: '20px',
@@ -25,7 +27,7 @@ const userAddedThemeLclS = JSON.parse(localStorage.getItem('userAddedDarkTheme')
 const userAddedHighlightLclSrg = JSON.parse(localStorage.getItem('userAddedDarkHighlight')) || [];
 
 
-const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFunc }) => {
+const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFunc, setIsDrawerOpen }) => {
     const consumer = useContext(ThemeModeContext);
     const { changeHighlight, themeChangerFunc } = consumer.presetFun;
     const theme = useTheme();
@@ -48,8 +50,21 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFu
     });
 
     const [isThemeDialogOpen, setIsThemeDialogOpen] = useState(false);
+    const [colorPickerProps, setColorPickerProps] = useState({
+        isOpen: false,
+        whichColorBox: 'Highlight',
+        defaultColors: ColorsPreset.darkThemePreset.highlightPreset,
+
+    }); 
     const addThemeCounter = newDarkThemePresets.length - darkThemeColors.themePresets.length + 1;
-    const [isConfirmation, setIsConfirmation] = useState(false);
+    const [confirmationProps, setConfirmationProps] = useState({
+        isOpen: false,
+        infoMess: 'Successfully added.',
+        message: '',
+        doneBtnName: 'Yes',
+        closeBtnName: 'NO',
+        whatChange: 'themeChange'
+    });
 
     // Theme Preset Function
     const selectThemePresetFunc = (e) => {
@@ -78,8 +93,10 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFu
     }, [selectedTheme]);
 
     // Add Theme Btn 
-    const addthemeBtn = () => {
-        setIsThemeDialogOpen(true);
+    const addthemeBtn = (whichBtn) => {
+        if (whichBtn === 'themeAddBtn') setIsThemeDialogOpen(true);
+        else setColorPickerProps({...colorPickerProps, isOpen: true});
+
     };
 
     const userThemeTakingFunc = (themePre, newHighlight) => {
@@ -87,7 +104,7 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFu
         if (!allPrestName.includes(themePre.themeName)) {
             setNewDarkThemePresets([...newDarkThemePresets, themePre]);
             setNewThemeHighlight([...newThemeHighlight, newHighlight]);
-            setIsConfirmation(true);
+            setConfirmationProps({ ...confirmationProps, isOpen: true, infoMess: 'Successfully added Theme.', message: 'Would you like to apply the Theme you just added?', whatChange: 'themeChange' });
             setUserAddedTheme([...userAddedTheme, themePre]);
             localStorage.setItem('userAddedDarkTheme', JSON.stringify([...userAddedTheme, themePre]));
             setUserAddedHighlight([...userAddedHiglight, newHighlight]);
@@ -98,7 +115,29 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFu
 
     };
 
-    const themeApplyBtnFunc = () => {
+    // taking highlight color value from color picker component.
+    const selectedColor = (highlightColor) => {
+        setNewThemeHighlight([...newThemeHighlight, highlightColor]);
+        setUserAddedHighlight([...userAddedHiglight, highlightColor]);
+        localStorage.setItem('userAddedDarkHighlight', JSON.stringify([...userAddedHiglight, highlightColor]));
+        setConfirmationProps({ ...confirmationProps, isOpen: true, infoMess: 'Successfully added highlight.', message: 'Would you like to apply the highlight you just added?', whatChange: 'highlightChange' });
+    };
+
+    const confirmDoneBtnFunc = (whatChange) => {
+        if (whatChange === 'themeChange') themeApplyAndSaveFunc(); 
+        else {
+            let highlightLastIndex = newThemeHighlight.length - 1;
+            let userhighlight = newThemeHighlight[highlightLastIndex];
+            setSelectHighlight(userhighlight);
+            changeHighlight(userhighlight);
+            localStorage.setItem('darkTheme', JSON.stringify({ themeName: selectedTheme.themeName, themeColors: { ...selectedTheme.themeColors, highlightColor: userhighlight } }));
+        }
+        setConfirmationProps({ ...confirmationProps, isOpen: false });
+        setIsDrawerOpen(false);
+    }
+
+    // Apply and Save theme or highlight in localStorage.
+    function themeApplyAndSaveFunc() {
         let themePreLastIndex = newDarkThemePresets.length - 1;
         let highlightLastIndex = newThemeHighlight.length - 1;
         let userTheme = newDarkThemePresets[themePreLastIndex];
@@ -108,8 +147,6 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFu
         themeChangerFunc({ ...userThemeColors, highlightColor: userhighlight });
         setSelectHighlight(userhighlight);
         localStorage.setItem('darkTheme', JSON.stringify({ themeName: userTheme.themeName, themeColors: { ...userThemeColors, highlightColor: userhighlight } }));
-        setIsConfirmation(false);
-
     };
 
     return (
@@ -121,7 +158,7 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFu
                         <Typography variant='body1' color={'mypresetcolor.fontColor'}>Theme Presets :</Typography>
                         {/* Add Theme Button */}
                         <Tooltip title={'Add Theme'} >
-                            <IconButton size='small' onClick={() => addthemeBtn()}>
+                            <IconButton size='small' onClick={() => addthemeBtn('themeAddBtn')}>
                                 <Add fontSize='small' />
                             </IconButton>
                         </Tooltip>
@@ -155,7 +192,7 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFu
                     <Stack display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
                         <Typography variant='body1' color={'mypresetcolor.fontColor'}>Highlight Colors :</Typography>
                         <Tooltip title={'Add Highlight'}>
-                            <IconButton size='small'>
+                            <IconButton size='small' onClick={() => addthemeBtn('highlightAddBtn')}>
                                 <Add fontSize='small' />
                             </IconButton>
                         </Tooltip>
@@ -228,10 +265,11 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFu
             {/* Take Theme Colors Dialog */}
             {
                 isThemeDialogOpen && (
-                    <TakeThemeDialog isThemeDialogOpen={isThemeDialogOpen} setIsThemeDialogOpen={setIsThemeDialogOpen} userThemeTakingFunc={userThemeTakingFunc} addThemeCounter={addThemeCounter} />
+                    <TakeThemeDialog isThemeDialogOpen={isThemeDialogOpen} setIsThemeDialogOpen={setIsThemeDialogOpen} userThemeTakingFunc={userThemeTakingFunc} addThemeCounter={addThemeCounter} defaultColors={ColorsPreset.darkThemePreset}/>
                 )
             }
-            <ThemeConfirmationDialog isConfirmation={isConfirmation} setIsConfirmation={setIsConfirmation} themeApplyBtnFunc={themeApplyBtnFunc} />
+            <ConfirmationDialogBox confirmationProps={confirmationProps} setConfirmationProps={setConfirmationProps} confirmDoneBtnFunc={confirmDoneBtnFunc} />
+            <ColorPickerDialog colorPickerProps={colorPickerProps} setColorPickerProps={setColorPickerProps} selectedColor={selectedColor}/>
         </>
     )
 }
