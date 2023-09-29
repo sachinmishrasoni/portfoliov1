@@ -29,7 +29,7 @@ const userAddedHighlightLclSrg = JSON.parse(localStorage.getItem('userAddedDarkH
 
 const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFunc, setIsDrawerOpen }) => {
     const consumer = useContext(ThemeModeContext);
-    const { changeHighlight, themeChangerFunc } = consumer.presetFun;
+    const { changeHighlight, themeChangerFunc } = consumer.Customization;
     const theme = useTheme();
 
     const [userAddedTheme, setUserAddedTheme] = useState(userAddedThemeLclS);
@@ -265,7 +265,7 @@ const DarkThemBox = ({ darkThemeColors, getUserDarkTheme, changeThemeHighlightFu
             {/* Take Theme Colors Dialog */}
             {
                 isThemeDialogOpen && (
-                    <TakeThemeDialog isThemeDialogOpen={isThemeDialogOpen} setIsThemeDialogOpen={setIsThemeDialogOpen} userThemeTakingFunc={userThemeTakingFunc} addThemeCounter={addThemeCounter} defaultColors={ColorsPreset.darkThemePreset}/>
+                    <TakeThemeDialog isThemeDialogOpen={isThemeDialogOpen} setIsThemeDialogOpen={setIsThemeDialogOpen} userThemeTakingFunc={userThemeTakingFunc} addThemeCounter={addThemeCounter} defaultColors={ColorsPreset.darkThemePreset} newThemePresets={newDarkThemePresets}/>
                 )
             }
             <ConfirmationDialogBox confirmationProps={confirmationProps} setConfirmationProps={setConfirmationProps} confirmDoneBtnFunc={confirmDoneBtnFunc} />

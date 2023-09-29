@@ -1,14 +1,14 @@
 {
     "darkThemePreset": {
-        "backgroundPreset": ["#040D12"],
-        "foregroundPreset": ["#183D3D"],
-        "highlightPreset": ["#5C8374"],
-        "fontPreset": ["#FFFFFF", "#93B1A6"]
+        "backgroundPreset": ["#040D12", "#393E46", "#352F44", "#100303", "#272121", "#35155D", "#1B2430", "#1A1A40", "#4C3A51", "#35013F", "#04322E", "#2C2C2C", "#443737", "#212121", "#213E3B", "#1B262C", "2C3333"],
+        "foregroundPreset": ["#183D3D", "#443737", "#5C5470", "#774360", "#2C2C2C", "#40514E", "#570A57", "#4C3575", "#84253E", "#41AEA9", "#0D7377", "#A2678A", "#4D3C77", "#3F2E3E", "#512B81", "#35155D", "#2E4F4F"],
+        "highlightPreset": ["#5C8374", "#793FDF", "#FAF0E6", "#F94C10", "#D67BFF", "#A6F6FF", "#F8DE22", "#FF0060", "#FFD93D", "#B9FFFC", "#FF1E56", "#2192FF", "#54BAB9", "#B2A4FF", "#DDFFBB", "#FEFF86", "#B9F3E4"],
+        "fontPreset": ["#FFFFFF", "#93B1A6", "#DBD8E3", "#DDFFBB", "#F6FFDE", "#FFF9DE", "#DDFFBB", "#E3F6FF", "#EAE0DA", "#F8FFDB", "#45FFCA", "#F9FBE7", "#B2A4FF"]
     },
     "lightThemePreset": {
-        "foregroundPreset": ["#93B1A6"],
-        "defaultforegroundcolors": ["#5C8374"],
-        "highlightPreset": ["#183D3D"],
-        "fontPreset": ["#000000", "#040D12"]
+        "backgroundPreset": ["#93B1A6", "#FBA1B7", "#FFF3DA", "#96B6C5", "#A8DF8E", "#FFE5E5", "#9ED2BE", "#FFEECC", "#98EECC", "#C4DFDF", "#FF9B9B", "#CBFFA9", "#C4D7B2", "#DDFFBB", "#D2DAFF", "#CCD6A6"],
+        "foregroundPreset": ["#5C8374", "#A0C49D", "#D7C0AE", "#F3BCC8", "#D0F5BE", "#ACBCFF", "#FDCEDF", "#F2BED1", "#D2E9E9", "#99A98F", "C1D0B5", "#FFD3B0", "#C7E9B0", "#B1B2FF", "#FFABE1", "#CCD6A6"],
+        "highlightPreset": ["#183D3D", "#B6E388", "#FFABE1", "#FF1E56", "#0F4C75", "#FF9898", "#ABD9FF", "#54BAB9", "#F6C90E", "#5C5470", "#FF6969", "#FFA1CF", "#F0E161", "#7FB77E", "#C0B236"],
+        "fontPreset": ["#000000", "#040D12", "#1B2430", "#2C3639", "#2C3333", "#472D2D", "#16213E", "#4C3A51", "#1A120B", "#03001C", "#352F44", "#451952", "#322F3D", "#183D3D", "#2E0249"]
     }
 }

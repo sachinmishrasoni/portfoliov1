@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Box, Button, Divider, FormControlLabel, IconButton, Stack, SwipeableDrawer, Switch, Tooltip, Typography, styled, useTheme } from '@mui/material';
+import { Box, Button, Divider, FormControlLabel, IconButton, MenuItem, Select, Stack, SwipeableDrawer, Switch, Tooltip, Typography, styled, useTheme } from '@mui/material';
 import { CloseTwoTone } from '@mui/icons-material';
 import ThemeColors from './ThemeColors.json';
 import DarkThemBox from './Card/DarkThemBox';
@@ -9,6 +9,7 @@ import PreviewBox from '../../Components/LayoutWrapper/HeaderSiblings/PreviewBox
 import BoncyTransXFramer from '../../Components/GlobalComponents/AnimatedCompo/BoncyTansXFramer';
 import BtnHoverFramer from '../../Components/GlobalComponents/AnimatedCompo/BtnHoverFramer';
 import NotifySnackBar from '../../Components/GlobalComponents/NotifySnackBar';
+import FontFamilies from './FontFamilies.json';
 
 
 // Swich Styling
@@ -78,12 +79,13 @@ const defaultLightTheme = JSON.parse(localStorage.getItem('lightTheme')) || {
         fontColor: '#27374D',
     }
 };
+const defaultFont = localStorage.getItem('fontFamily') || 'cursive';
 
 const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
     const theme = useTheme();
     const consumer = useContext(ThemeModeContext);
     const { toggleThemeMode } = consumer.colorMode;
-    const { themeChangerFunc } = consumer.presetFun;
+    const { themeChangerFunc, fontChangerFunc } = consumer.Customization;
     const checkmode = mode === 'dark' ? true : false
     const [isDarkModeActive, setIsDarkModeActive] = useState(checkmode);     // For Toggle Button
     const [selectUserDarkTheme, setSelectUserDarkTheme] = useState({ ...defaultDarkTheme });
@@ -93,6 +95,7 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
         alertType: 'info',
         message: ''
     });
+    const [selectedFont, setSelectedFont] = useState(defaultFont);
 
     const getUserDarkTheme = (val) => {
         setSelectUserDarkTheme(val)
@@ -120,7 +123,7 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
         }
     }
 
-    // Set or Reset Theme
+    // Save Button in Setting.
     const themeSetBtn = () => {
         if (theme.palette.mode === 'dark') {
             localStorage.setItem('darkTheme', JSON.stringify(selectUserDarkTheme));
@@ -129,8 +132,12 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
             localStorage.setItem('lightTheme', JSON.stringify(selectUserLightTheme));
             setIsDrawerOpen(false);
         }
+        // font-family store in local-storage.
+        localStorage.setItem('fontFamily', selectedFont);
 
     }
+
+    // Reset Button in Setting.
     const themeResetBtn = () => {
         if (isDarkModeActive === false) toggleThemeMode();
         localStorage.removeItem('darkTheme');
@@ -140,8 +147,8 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
     };
 
     const changeThemeHighlightFunc = (val) => {
-        if(val === 'theme') setNotifyBarProps({...notifyBarProps, isOpen: true, message: 'Save Theme.'});
-        else setNotifyBarProps({...notifyBarProps, isOpen: true, message: 'Save Highlight.'});
+        if (val === 'theme') setNotifyBarProps({ ...notifyBarProps, isOpen: true, message: 'Save Theme.' });
+        else setNotifyBarProps({ ...notifyBarProps, isOpen: true, message: 'Save Highlight.' });
     }
 
     const clearAllBtnFunc = () => {
@@ -149,6 +156,15 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
         setIsDrawerOpen(false);
         window.location.reload(false);
     }
+
+    // Font Selection Function
+    const fontChangeHandler = (e) => {
+        setSelectedFont(e.target.value);
+        fontChangerFunc(e.target.value);
+        // let findFontFam = Object.entries(FontFamilies).filter((fontFam) => fontFam[0] === e.target.value);
+        // console.log(findFontFam[0][1])
+        setNotifyBarProps({...notifyBarProps,isOpen: true, message: 'Save the Font'})
+    };
     return (
         <>
             <SwipeableDrawer
@@ -225,23 +241,26 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                     >
                         <Box className={`fliper-inner-box ${isDarkModeActive ? '' : 'theme-box'}`}>
                             <Box className={'front-box'} >
-                                <DarkThemBox darkThemeColors={ThemeColors.darkThemeColors} getUserDarkTheme={getUserDarkTheme} changeThemeHighlightFunc={changeThemeHighlightFunc} setIsDrawerOpen={setIsDrawerOpen}/>
+                                <DarkThemBox darkThemeColors={ThemeColors.darkThemeColors} getUserDarkTheme={getUserDarkTheme} changeThemeHighlightFunc={changeThemeHighlightFunc} setIsDrawerOpen={setIsDrawerOpen} />
                             </Box>
                             <Box className={'back-box'}>
-                                <LightThemeBox lightThemeColors={ThemeColors.lightThemeColors} getUserLightTheme={getUserLightTheme} changeThemeHighlightFunc={changeThemeHighlightFunc} setIsDrawerOpen={setIsDrawerOpen}/>
+                                <LightThemeBox lightThemeColors={ThemeColors.lightThemeColors} getUserLightTheme={getUserLightTheme} changeThemeHighlightFunc={changeThemeHighlightFunc} setIsDrawerOpen={setIsDrawerOpen} />
                             </Box>
                         </Box>
                     </Box>
                     {/* Font Varients */}
-                    {/* <Stack p={1}>
+                    <Stack p={1}>
                         <Typography>Font Varients:</Typography>
                         <Select
                             size='small'
                             fullWidth
+                            value={selectedFont}
+                            onChange={fontChangeHandler}
+                            sx={{ textTransform: 'capitalize' }}
                         >
-
+                            {Object.keys(FontFamilies).map((fontName, index) => <MenuItem key={index} value={fontName} sx={{ fontFamily: fontName, textTransform: 'capitalize' }}>{fontName}</MenuItem>)}
                         </Select>
-                    </Stack> */}
+                    </Stack>
 
                     <Box p={1}>
                         <PreviewBox />
@@ -268,7 +287,7 @@ const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
                         <Button variant='outlined' size='small' onClick={() => clearAllBtnFunc()}>Clear All</Button>
                     </Stack>
                 </Box>
-                <NotifySnackBar notifyBarProps={notifyBarProps} setNotifyBarProps={setNotifyBarProps}/>
+                <NotifySnackBar notifyBarProps={notifyBarProps} setNotifyBarProps={setNotifyBarProps} />
             </SwipeableDrawer>
         </>
     )

@@ -1,0 +1,18 @@
+{
+    "Amita": ["Amita", "cursive"],
+    "Caveat": ["Caveat", "cursive"],
+    "Cinzel": ["Cinzel", "serif"],
+    "cursive": ["cursive"],
+    "Domine": ["Domine", "serif"],
+    "Fuggles": ["Fuggles", "cursive"],
+    "Mooli": ["Mooli", "sans-serif"],
+    "monospace": ["monospace"],
+    "Open Sans": ["Open Sans", "sans-serif"],
+    "Pacifico": ["Pacifico", "cursive"],
+    "Parisienne": ["Parisienne", "cursive"],
+    "Poppins": ["Poppins", "sans-serif"],
+    "Roboto": ["Roboto", "sans-serif"],
+    "sans-serif": ["sans-serif"],
+    "Tilt Prism": ["Tilt Prism", "cursive"],
+    "Young Serif": ["Young Serif", "serif"]
+}

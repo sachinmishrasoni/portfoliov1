@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amita&family=Caveat&family=Cinzel&family=Domine&family=Fuggles&family=Mooli&family=Open+Sans&family=Pacifico&family=Parisienne&family=Poppins&family=Roboto&family=Tilt+Prism&family=Young+Serif&display=swap');
+
 html{
   scroll-behavior: smooth;
 }
 body{
-  font-family: 'Roboto';
   cursor: default;
 }
 

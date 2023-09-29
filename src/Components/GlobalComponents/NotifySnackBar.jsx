@@ -50,7 +50,7 @@ const NotifySnackBar = ({ notifyBarProps, setNotifyBarProps}) => {
                                     key={vertical + horizontal}
                                     sx={{ position: 'absolute', top: '10px', '@media(min-width: 600px)': { top: 15, left: 0, right: 0, transform: 'none' } }}
                                 >
-                                    <Alert severity="info">{notifyBarProps.message}</Alert>
+                                    <Alert severity={notifyBarProps.alertType}>{notifyBarProps.message}</Alert>
                                 </Snackbar>
                             </motion.div>
                         )

@@ -34,10 +34,10 @@ const RoundedPaper = styled(Paper)(({ theme }) => ({
     }
 }));
 
-const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTakingFunc, addThemeCounter }) => {
+const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTakingFunc, addThemeCounter, newThemePresets }) => {
     const theme = useTheme();
-    const defaultThemeName = theme.palette.mode === 'dark'? `Untitle${addThemeCounter} Dark` : `Untitle${addThemeCounter} Light`;
-    const defaultColorsPreset = theme.palette.mode === 'dark'? ColorsPreset.darkThemePreset : ColorsPreset.lightThemePreset;
+    const defaultThemeName = theme.palette.mode === 'dark' ? `Untitle${addThemeCounter} Dark` : `Untitle${addThemeCounter} Light`;
+    const defaultColorsPreset = theme.palette.mode === 'dark' ? ColorsPreset.darkThemePreset : ColorsPreset.lightThemePreset;
     const [userThemeName, setUserThemeName] = useState(defaultThemeName);
     const [userThemeColors, setUserThemeColor] = useState({
         backgroundColor: '',
@@ -57,7 +57,7 @@ const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTak
         whichColorBox: '',
         defaultColors: [],
 
-    }); 
+    });
 
 
     const titlerHandler = (e) => {
@@ -67,19 +67,19 @@ const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTak
     const colorBoxBtnFunc = (whichbox) => {
         if (whichbox === 'background') {
             setActiveBtnBox('background');
-            setColorPickerProps({...colorPickerProps, isOpen: true, whichColorBox: 'Background', defaultColors: defaultColorsPreset.backgroundPreset});
+            setColorPickerProps({ ...colorPickerProps, isOpen: true, whichColorBox: 'Background', defaultColors: defaultColorsPreset.backgroundPreset });
         }
         else if (whichbox === 'foreground') {
             setActiveBtnBox('foreground');
-            setColorPickerProps({...colorPickerProps, isOpen: true, whichColorBox: 'Foreground', defaultColors: defaultColorsPreset.foregroundPreset});
+            setColorPickerProps({ ...colorPickerProps, isOpen: true, whichColorBox: 'Foreground', defaultColors: defaultColorsPreset.foregroundPreset });
         }
         else if (whichbox === 'highlight') {
             setActiveBtnBox('highlight');
-            setColorPickerProps({...colorPickerProps, isOpen: true, whichColorBox: 'Highlight', defaultColors: defaultColorsPreset.highlightPreset});
+            setColorPickerProps({ ...colorPickerProps, isOpen: true, whichColorBox: 'Highlight', defaultColors: defaultColorsPreset.highlightPreset });
         }
         else {
             setActiveBtnBox('font');
-            setColorPickerProps({...colorPickerProps, isOpen: true, whichColorBox: 'Font', defaultColors: defaultColorsPreset.fontPreset});
+            setColorPickerProps({ ...colorPickerProps, isOpen: true, whichColorBox: 'Font', defaultColors: defaultColorsPreset.fontPreset });
         }
     };
     const selectedColor = (colorVal, whichbox) => {
@@ -106,11 +106,17 @@ const TakeThemeDialog = ({ isThemeDialogOpen, setIsThemeDialogOpen, userThemeTak
         if (checktheme.every((item) => item.trim() !== '')) {
             if (backgroundColor !== highlightColor && highlightColor !== fontColor) {
                 const userTheme = { themeName: userThemeName, themeColors: { backgroundColor: backgroundColor, foregroundColor: foregroundColor, fontColor: fontColor } };
-                userThemeTakingFunc(userTheme, highlightColor);
                 // after add then close and empty
-                setIsThemeDialogOpen(false);
-                setUserThemeColor({ ...userThemeColors, backgroundColor: '', foregroundColor: '', highlightColor: '', fontColor: '' });
-                setActiveBtnBox('background');
+                let allPrestName = newThemePresets.map((preset) => preset.themeName);
+                if (!allPrestName.includes(userTheme.themeName)) {
+                    userThemeTakingFunc(userTheme, highlightColor);
+                    setIsThemeDialogOpen(false);
+                    setUserThemeColor({ ...userThemeColors, backgroundColor: '', foregroundColor: '', highlightColor: '', fontColor: '' });
+                    setActiveBtnBox('background');
+                } else {
+                    setNotifyBarProps({ ...notifyBarProps, isOpen: true, alertType: 'error', message: 'Theme already Exits' });
+                }
+
             } else {
                 setNotifyBarProps({ ...notifyBarProps, isOpen: true, message: 'Fill Different Color' });
             }

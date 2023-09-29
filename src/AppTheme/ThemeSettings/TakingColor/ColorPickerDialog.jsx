@@ -17,7 +17,7 @@ const ColorPickerDialog = ({ colorPickerProps, setColorPickerProps, selectedColo
     }
     const addBtnFunc = () => {
         selectedColor(selectColor, colorPickerProps.whichColorBox);
-        setColorPickerProps({...colorPickerProps, isOpen: false});
+        setColorPickerProps({ ...colorPickerProps, isOpen: false });
         setIsCustomPicker(false);
         // setSelectColor('#4D4D4D');
 
@@ -64,7 +64,7 @@ const ColorPickerDialog = ({ colorPickerProps, setColorPickerProps, selectedColo
             >
                 <Stack width={'100%'} display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'} p={2} pb={1}>
                     <Typography variant='h6' fontWeight={'bold'}>Add {colorPickerProps.whichColorBox}</Typography>
-                    <IconButton size='small' onClick={() => { setColorPickerProps({...colorPickerProps, isOpen: false}); setIsCustomPicker(false) }}>
+                    <IconButton size='small' onClick={() => { setColorPickerProps({ ...colorPickerProps, isOpen: false }); setIsCustomPicker(false) }}>
                         <Close fontSize='small' />
                     </IconButton>
                 </Stack>
@@ -85,18 +85,21 @@ const ColorPickerDialog = ({ colorPickerProps, setColorPickerProps, selectedColo
                             backgroundImage: 'none',
                             // border: '1px solid',
                             // borderColor: 'mypresetcolor.highlightColor'
+                            // className='upanddown'
                         }} >
-                        <Typography variant='caption' fontWeight={'600'} color={'white'} display={'flex'} alignItems={'center'}>Customise {isCustomPicker? <ExpandLess fontSize='small'/>: <ExpandMore fontSize='small'/>}</Typography>
+                        <Typography variant='caption' fontWeight={'600'} color={'white'} display={'flex'} alignItems={'center'}>Customise {isCustomPicker ? <ExpandLess fontSize='small' /> : <ExpandMore fontSize='small' />}</Typography>
                     </Paper>
 
                     <Box className='color-picker-box'>
-                        <AnimatePresence initial={false}>
+                        <AnimatePresence mode='wait'>
                             {
                                 isCustomPicker
-                                    ? <motion.div initial={{ scale: 0, opacity: 0, y: -100 }} animate={{ scale: 1, opacity: 1, y: 0 }} transition={{ duration: 0.3 }} exit={{ scale: 0, opacity: 0 }}>
+                                    ? (<motion.div key={'visible'} initial={{ scale: 0, opacity: 0, y: -100 }} animate={{ scale: 1, opacity: 1, y: 0 }} transition={{ duration: 0.5, type: 'spring' }} exit={{ scale: 0, opacity: 0, y: -100 }}>
                                         <ChromePicker color={selectColor} onChange={chromePickerHandler} disableAlpha={true} />
-                                    </motion.div>
-                                    : <CirclePicker width='250px' circleSpacing={7} colors={colorPickerProps.defaultColors} onChange={colorChangerFunc} />
+                                    </motion.div>)
+                                    : (<motion.div key={'hidden'} initial={{ scale: 0, opacity: 0, y: 50 }} animate={{ scale: 1, opacity: 1, y: 0 }} transition={{ duration: 0.3, type: 'spring' }} exit={{ scale: 0, opacity: 0, y: 50 }}>
+                                        <CirclePicker width='250px' circleSpacing={7} colors={colorPickerProps.defaultColors} onChange={colorChangerFunc} />
+                                    </motion.div>)
                             }
                         </AnimatePresence>
                     </Box>

@@ -7,13 +7,15 @@ const mode = localStorage.getItem('mode') || 'dark';
 const userHighlightColor = localStorage.getItem('highlight') || '#79E0EE';
 const darkTheme = localStorage.getItem('darkTheme') || { themeName: 'Default Dark', themeColors: { backgroundColor: '#151922', foregroundColor: '#1C1F24', fontColor: '#FFFFFF', highlightColor: userHighlightColor}}
 const lightTheme = localStorage.getItem('lightTheme') || { themeName: 'Default Light', themeColors: { backgroundColor: '#F3FDE8', foregroundColor: '#96B6C5', fontColor: '#27374D', highlightColor: userHighlightColor}}
-const userThemeColors = mode === 'dark' ? darkTheme : lightTheme
+const userThemeColors = mode === 'dark' ? darkTheme : lightTheme;
+const defaultFont = localStorage.getItem('fontFamily') || 'cursive';
 
 
 export const ThemeModeProvider = ({ children }) => {
     const ppy = typeof(userThemeColors) === 'string' ? JSON.parse(userThemeColors) : userThemeColors
     const [thememode, setThemeMode] = useState(mode);
     const [preset, setPreset] = useState(ppy.themeColors);
+    const [selectedFont, setSelectedFont] = useState(defaultFont);
     // console.log(JSON.parse(darkTheme))
     const themeObj = {
         dark: {
@@ -64,15 +66,19 @@ export const ThemeModeProvider = ({ children }) => {
         thememode
     }), [thememode]);
 
-    const presetFun = useMemo(() => ({
+    const Customization = useMemo(() => ({
         themeChangerFunc: function(colors){
             setPreset({...colors})
             // console.log(colors,'Sam');
         },
         changeHighlight: function (color) {
             setPreset({ ...preset, highlightColor: color })
+        },
+        fontChangerFunc: function(fontName){
+            // console.log(fontName);
+            setSelectedFont(fontName);
         }
-    }), [preset])
+    }), [preset]);
 
     // Create Theme
     let theme = useMemo(() => createTheme({
@@ -91,13 +97,16 @@ export const ThemeModeProvider = ({ children }) => {
             mode: thememode,
             ...themeObj[thememode],
         },
+        typography: {
+            fontFamily: selectedFont
+        }
 
         // eslint-disable-next-line
-    }), [thememode, preset]);
+    }), [thememode, preset, selectedFont]);
     theme = responsiveFontSizes(theme);
     // console.log(preset)
     return (
-        <ThemeModeContext.Provider value={{ colorMode, presetFun }}>
+        <ThemeModeContext.Provider value={{ colorMode, Customization }}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 {children}
