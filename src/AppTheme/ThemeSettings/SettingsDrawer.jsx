@@ -79,7 +79,7 @@ const defaultLightTheme = JSON.parse(localStorage.getItem('lightTheme')) || {
         fontColor: '#27374D',
     }
 };
-const defaultFont = localStorage.getItem('fontFamily') || 'cursive';
+const defaultFont = localStorage.getItem('fontFamily') || 'Mooli';
 
 const SettingsDrawer = ({ isdrawerOpen, setIsDrawerOpen }) => {
     const theme = useTheme();

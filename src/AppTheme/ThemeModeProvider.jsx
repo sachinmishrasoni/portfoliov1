@@ -8,7 +8,7 @@ const userHighlightColor = localStorage.getItem('highlight') || '#79E0EE';
 const darkTheme = localStorage.getItem('darkTheme') || { themeName: 'Default Dark', themeColors: { backgroundColor: '#151922', foregroundColor: '#1C1F24', fontColor: '#FFFFFF', highlightColor: userHighlightColor}}
 const lightTheme = localStorage.getItem('lightTheme') || { themeName: 'Default Light', themeColors: { backgroundColor: '#F3FDE8', foregroundColor: '#96B6C5', fontColor: '#27374D', highlightColor: userHighlightColor}}
 const userThemeColors = mode === 'dark' ? darkTheme : lightTheme;
-const defaultFont = localStorage.getItem('fontFamily') || 'cursive';
+const defaultFont = localStorage.getItem('fontFamily') || 'Mooli';
 
 
 export const ThemeModeProvider = ({ children }) => {
