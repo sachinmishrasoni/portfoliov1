@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/Sam_Portfolio_01/static/css/main.7802d7ca.css",
-    "main.js": "/Sam_Portfolio_01/static/js/main.257c54e9.js",
+    "main.js": "/Sam_Portfolio_01/static/js/main.1b071564.js",
     "static/css/749.40b60bb9.chunk.css": "/Sam_Portfolio_01/static/css/749.40b60bb9.chunk.css",
-    "static/js/749.b93f7405.chunk.js": "/Sam_Portfolio_01/static/js/749.b93f7405.chunk.js",
+    "static/js/749.bfd4c9f2.chunk.js": "/Sam_Portfolio_01/static/js/749.bfd4c9f2.chunk.js",
     "static/js/787.1ed0c42c.chunk.js": "/Sam_Portfolio_01/static/js/787.1ed0c42c.chunk.js",
     "static/js/802.7b9bc904.chunk.js": "/Sam_Portfolio_01/static/js/802.7b9bc904.chunk.js",
     "static/media/Contact3dimg.png": "/Sam_Portfolio_01/static/media/Contact3dimg.1446628135364fb6dd2c.png",
@@ -19,14 +19,14 @@
     "static/media/Banner02.jpg": "/Sam_Portfolio_01/static/media/Banner02.a8524e4dd242ae3f0d15.jpg",
     "index.html": "/Sam_Portfolio_01/index.html",
     "main.7802d7ca.css.map": "/Sam_Portfolio_01/static/css/main.7802d7ca.css.map",
-    "main.257c54e9.js.map": "/Sam_Portfolio_01/static/js/main.257c54e9.js.map",
+    "main.1b071564.js.map": "/Sam_Portfolio_01/static/js/main.1b071564.js.map",
     "749.40b60bb9.chunk.css.map": "/Sam_Portfolio_01/static/css/749.40b60bb9.chunk.css.map",
-    "749.b93f7405.chunk.js.map": "/Sam_Portfolio_01/static/js/749.b93f7405.chunk.js.map",
+    "749.bfd4c9f2.chunk.js.map": "/Sam_Portfolio_01/static/js/749.bfd4c9f2.chunk.js.map",
     "787.1ed0c42c.chunk.js.map": "/Sam_Portfolio_01/static/js/787.1ed0c42c.chunk.js.map",
     "802.7b9bc904.chunk.js.map": "/Sam_Portfolio_01/static/js/802.7b9bc904.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7802d7ca.css",
-    "static/js/main.257c54e9.js"
+    "static/js/main.1b071564.js"
   ]
 }
