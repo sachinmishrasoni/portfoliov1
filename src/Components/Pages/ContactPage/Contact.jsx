@@ -16,7 +16,7 @@ import SnackBar from './SnackBar';
 const fullName_Exp = /^[A-Za-z ]{2,50}$/;
 const emailId_Exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const mobileNumber_Exp = /^[6-9][0-9]{9}$/;
-const message_Exp = /^[A-Za-z ]{2,}$/;
+// const message_Exp = /^[A-Za-z ]{2,}$/;
 
 const Contact = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -55,8 +55,9 @@ const Contact = () => {
             if (mobileNumber_Exp.test(value)) setIsValid({ ...isValid, isMobNumValid: true });
             else setIsValid({ ...isValid, isMobNumValid: false });
         } else if (name === 'message') {
-            if (message_Exp.test(value)) setIsValid({ ...isValid, isMessageValid: true });
-            else setIsValid({ ...isValid, isMessageValid: false });
+            setIsValid({ ...isValid, isMessageValid: true })
+            // if (message_Exp.test(value)) setIsValid({ ...isValid, isMessageValid: true });
+            // else setIsValid({ ...isValid, isMessageValid: false });
         }
         setUserContactData({ ...userContactData, [name]: value });
     };
@@ -65,18 +66,40 @@ const Contact = () => {
         const isDataEmpty = Object.values(userContactData).map((userObjVal) => userObjVal.trim() !== '');
         const isAnyError = Object.values(isValid);
         if (isDataEmpty.every((val) => val === true && isAnyError.every((val) => val === true))) {
-            console.log('Submit Done');
-            console.log(userContactData);
+            // console.log('Submit Done');
+            // console.log(userContactData);
             setIsDialogOpen(true);
         } else {
-            setSnackBarprops({...snackBarProps, isOpen: true, alertType: 'info', message: 'Fill the Form Correctly.'});
+            setSnackBarprops({ ...snackBarProps, isOpen: true, alertType: 'info', message: 'Fill the Form Correctly.' });
         }
     };
 
-    // for Dialog
-    const ConfirmDoneBtn = () => {
-        setUserContactData({ ...userContactData, full_name: '', email_id: '', mob_num: '', message: '' });
-        setSnackBarprops({...snackBarProps, isOpen: true, alertType: 'success', message: 'Submitted Successfully'});
+    // Dialog done Btn
+    const ConfirmDoneBtn = async () => {
+
+        try {
+            const response = await fetch('https://formspree.io/f/xeqbplgd', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userContactData),
+            });
+
+            if (response.ok) {
+                // Handle successful form submission here (e.g., show a success message).
+                // console.log('Form submitted successfully');
+                setUserContactData({ ...userContactData, full_name: '', email_id: '', mob_num: '', message: '' });
+                setSnackBarprops({ ...snackBarProps, isOpen: true, alertType: 'success', message: 'Form submitted successfully' });
+            } else {
+                // Handle form submission error here (e.g., display an error message).
+                // console.error('Form submission error');
+                setSnackBarprops({ ...snackBarProps, isOpen: true, alertType: 'error', message: 'Form submission error' });
+            }
+        } catch (error) {
+            // console.error('Error submitting form:', error);
+            setSnackBarprops({ ...snackBarProps, isOpen: true, alertType: 'error', message: 'Error submitting form' });
+        }
     }
 
     return (
