@@ -21,6 +21,7 @@ const ContactBackCard = (props) => {
                 }}>
                 <Typography variant='body1' fontWeight={'bold'} mb={1} sx={{ wordBreak: 'break-word', textAlign: 'center' }}>{props.cardText}</Typography>
                 <Button
+                    onClick={() => props.sendMessageHangler()}
                     variant='outlined'
                     size='large'
                     sx={{

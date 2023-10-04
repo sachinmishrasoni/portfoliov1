@@ -102,6 +102,26 @@ const Contact = () => {
         }
     }
 
+    const mailHandler = () => {
+        const email = 'sachinmishraf103@gmail.com';
+        const subject = 'Your Subject';
+        const body = 'This is the email body';
+        const composeUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+        window.open(composeUrl, '_blank');
+    }
+    const whatsAppHandler = () => {
+        const phoneNumber = '7545823925';
+        const message = 'Hello Sam';
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+    const telegramHandler = () => {
+        const usernameOrPhoneNumber = 'sachinmishrasoni';
+        const message = 'Hello Sam'; 
+        const telegramUrl = `tg://msg?to=${usernameOrPhoneNumber}&text=${encodeURIComponent(message)}`;
+        window.open(telegramUrl, '_blank');
+    }
+
     return (
         <>
             <Box
@@ -225,9 +245,15 @@ const Contact = () => {
                         </Grid>
                         <Grid item xxs={12} sm={4} md={3} order={{ xxs: 2, sm: 1 }} py={{ xxs: 1.5, sm: 0 }}>
                             <Stack display={'flex'} flexDirection={'column'} alignItems={'center'} gap={1.5} sx={{ '& div': { width: '100%' } }}>
-                                <TranslateXFramer durVal={1}><FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Gmail'} cardIcon={Mail} />} backComponent={<ContactBackCard cardText={'sachinmishraf103@gamil.com'} />} /></TranslateXFramer>
-                                <TranslateXFramer durVal={1.5}><FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Whatsapp'} cardIcon={WhatsApp} />} backComponent={<ContactBackCard cardText={'+91-7545823925'} />} /></TranslateXFramer>
-                                <TranslateXFramer durVal={2}><FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Telegram'} cardIcon={Telegram} />} backComponent={<ContactBackCard cardText={'Sachin Mishra Soni'} />} /></TranslateXFramer>
+                                <TranslateXFramer durVal={1}>
+                                    <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Gmail'} cardIcon={Mail} />} backComponent={<ContactBackCard cardText={'sachinmishraf103@gamil.com'} sendMessageHangler={mailHandler} />} />
+                                </TranslateXFramer>
+                                <TranslateXFramer durVal={1.5}>
+                                    <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Whatsapp'} cardIcon={WhatsApp} />} backComponent={<ContactBackCard cardText={'+91-7545823925'} sendMessageHangler={whatsAppHandler} />} />
+                                </TranslateXFramer>
+                                <TranslateXFramer durVal={2}>
+                                    <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Telegram'} cardIcon={Telegram} />} backComponent={<ContactBackCard cardText={'Sachin Mishra Soni'} sendMessageHangler={telegramHandler} />} />
+                                </TranslateXFramer>
                             </Stack>
                         </Grid>
 
