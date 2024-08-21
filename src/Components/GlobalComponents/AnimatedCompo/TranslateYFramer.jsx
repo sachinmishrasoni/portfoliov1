@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 const TranslateYFramer = ({ children, durVal = 1, fullHeight }) => {
     const control = useAnimation();
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
-    const [val, setVal] = useState(75);
+    // const [val, setVal] = useState(75);
     // const [prevScrollY, setPrevScrollY] = useState(0);
     // const handleScroll = () => {
     //     const currentScrollY = window.scrollY;
@@ -38,7 +38,7 @@ const TranslateYFramer = ({ children, durVal = 1, fullHeight }) => {
 
     const translateYVarients = {
         hidden: {
-            y: val,
+            y: 75,
             opacity: 0,
         },
         visible: {

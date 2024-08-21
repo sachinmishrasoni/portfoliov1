@@ -26,6 +26,7 @@ const MobileViewNavBar = () => {
         }
     };
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const listenToScroll = useCallback(debounce(() => {
         const pageYOffset = window.pageYOffset + 200;
         let newActiveSection = null;
@@ -47,6 +48,7 @@ const MobileViewNavBar = () => {
         } else {
             setIsVisible(false);
         }
+    
     }, 200), [sections.current]);
 
     useEffect(() => {
@@ -54,6 +56,7 @@ const MobileViewNavBar = () => {
 
         window.addEventListener('scroll', listenToScroll);
         return () => window.removeEventListener('scroll', listenToScroll);
+        // eslint-disable-next-line
     }, []);
 
     return (

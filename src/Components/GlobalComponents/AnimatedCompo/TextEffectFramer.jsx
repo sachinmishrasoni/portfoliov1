@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const TextEffectFramer = ({children, secVal=1.5}) => {
     const control = useAnimation();
     const [ref, inView] = useInView({  triggerOnce: true, threshold: 0.3 });
-    const [aniVal, setAniVal] = useState(50);
+    // const [aniVal, setAniVal] = useState(50);
     // const [prevScrollY, setPrevScrollY] = useState(0);
     // const handleScroll = () => {
     //     const currentScrollY = window.scrollY;
@@ -37,7 +37,7 @@ const TextEffectFramer = ({children, secVal=1.5}) => {
 
     const textVarients = {
         hidden: {
-            y: aniVal,
+            y: 50,
             opacity: 0,
         },
         visible: {
