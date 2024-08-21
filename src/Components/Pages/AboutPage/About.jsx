@@ -47,21 +47,23 @@ const About = () => {
                     <Box className='boxView-mobiles'>
                         <Grid container spacing={1.5}>
                             <Grid item xxs={12} md={12} >
-                                <AboutSection />
+                                <TranslateYFramer>
+                                    <AboutSection />
+                                </TranslateYFramer>
                             </Grid>
 
                             <Grid xxs={12} md={6}>
-                                <TranslateXFramer XVal='100vw' fullHeight={true}>
+                                <TranslateXFramer XVal='-100vw' fullHeight={true}>
                                     <CardBox title='Experiences' icon={BsPersonWorkspace} content={<ExperienceSection />} paddingLeft={0} />
                                 </TranslateXFramer>
                             </Grid>
                             <Grid xxs={12} md={6} pl={{ xxs: 0, md: 0.5 }}>
-                                <TranslateXFramer XVal='-100vw'>
+                                <TranslateXFramer XVal='100vw'>
                                     <CardBox title='Education' icon={School} content={<EducationSection />} paddingLeft={0} />
                                 </TranslateXFramer>
                             </Grid>
                             <Grid xxs={12} md={12} position={'relative'} pr={{ xxs: 0, md: 0.5 }}>
-                                <TranslateXFramer XVal='100vw'>
+                                <TranslateXFramer XVal='-100vw'>
                                     <CardBox title='Skills' icon={Psychology} content={<SkillSection />} />
                                 </TranslateXFramer>
                             </Grid>

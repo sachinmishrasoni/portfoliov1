@@ -12,6 +12,7 @@ import TranslateXFramer from '../../GlobalComponents/AnimatedCompo/TranslateXFra
 import TextEffectFramer from '../../GlobalComponents/AnimatedCompo/TextEffectFramer';
 import ConfirmDialog from './ConfirmDialog';
 import SnackBar from './SnackBar';
+import SkillCard1Framer from '../../GlobalComponents/AnimatedCompo/SkillCard1Framer';
 // Regular Expression
 const fullName_Exp = /^[A-Za-z ]{2,50}$/;
 const emailId_Exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -173,7 +174,7 @@ const Contact = () => {
                         </Grid>
                         <Grid item xxs={12} sm={4} md={6} order={{ xxs: 3, sm: 1 }} px={{ xxs: 0, sm: 1.5 }} >
                             <form style={{ width: '100%' }}>
-                                <TranslateYFramer>
+                                <SkillCard1Framer>
                                     <TextField
                                         fullWidth
                                         required
@@ -185,10 +186,10 @@ const Contact = () => {
                                         error={!isFullNameValid ? true : false}
                                         helperText={!isFullNameValid ? "Oops Not Valid.!" : ''}
                                     />
-                                </TranslateYFramer>
+                                </SkillCard1Framer>
 
                                 <Stack display={'flex'} flexDirection={{ xxs: 'column', md: 'row' }} gap={{ xxs: 0, md: 1.3 }} sx={{ '& div': { width: '100%' } }}>
-                                    <TranslateYFramer durVal={1.5}>
+                                    <SkillCard1Framer durVal={1.5}>
                                         <TextField
                                             fullWidth
                                             label={'Email Id'}
@@ -202,8 +203,8 @@ const Contact = () => {
                                             error={!isEmailIdValid ? true : false}
                                             helperText={!isEmailIdValid ? "Oops Not Valid.!" : ''}
                                         />
-                                    </TranslateYFramer>
-                                    <TranslateYFramer durVal={1.5}>
+                                    </SkillCard1Framer>
+                                    <SkillCard1Framer durVal={1.5}>
                                         <TextField
                                             fullWidth
                                             name='mob_num'
@@ -216,9 +217,9 @@ const Contact = () => {
                                             error={!isMobNumValid ? true : false}
                                             helperText={!isMobNumValid ? "Oops Not Valid.!" : ''}
                                         />
-                                    </TranslateYFramer>
+                                    </SkillCard1Framer>
                                 </Stack>
-                                <TranslateYFramer durVal={2}>
+                                <SkillCard1Framer durVal={2}>
                                     <TextField
                                         fullWidth
                                         name='message'
@@ -237,21 +238,21 @@ const Contact = () => {
                                             }
                                         }}
                                     />
-                                </TranslateYFramer>
-                                <TranslateYFramer durVal={1.5}>
+                                </SkillCard1Framer>
+                                <SkillCard1Framer durVal={1.5}>
                                     <Button variant='contained' fullWidth sx={{ mt: 0.8, }} onClick={SubmitBtnFunc}>Submit</Button>
-                                </TranslateYFramer>
+                                </SkillCard1Framer>
                             </form>
                         </Grid>
                         <Grid item xxs={12} sm={4} md={3} order={{ xxs: 2, sm: 1 }} py={{ xxs: 1.5, sm: 0 }}>
                             <Stack display={'flex'} flexDirection={'column'} alignItems={'center'} gap={1.5} sx={{ '& div': { width: '100%' } }}>
-                                <TranslateXFramer XVal='-100vw' durVal={1.5}>
+                                <TranslateXFramer XVal='100vw' durVal={1.5}>
                                     <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Gmail'} cardIcon={Mail} />} backComponent={<ContactBackCard cardText={'sachinmishraf103@gamil.com'} sendMessageHangler={mailHandler} />} />
                                 </TranslateXFramer>
                                 <TranslateXFramer XVal='100vw' durVal={1.5}>
                                     <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Whatsapp'} cardIcon={WhatsApp} />} backComponent={<ContactBackCard cardText={'+91-7545823925'} sendMessageHangler={whatsAppHandler} />} />
                                 </TranslateXFramer>
-                                <TranslateXFramer XVal='-100vw' durVal={1.5}>
+                                <TranslateXFramer XVal='100vw' durVal={1.5}>
                                     <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Telegram'} cardIcon={Telegram} />} backComponent={<ContactBackCard cardText={'@sachinmishrasoni'} sendMessageHangler={telegramHandler} />} />
                                 </TranslateXFramer>
                             </Stack>

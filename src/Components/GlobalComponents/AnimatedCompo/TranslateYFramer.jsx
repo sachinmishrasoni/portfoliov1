@@ -3,7 +3,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 
-const TranslateYFramer = ({ children, durVal = 1, fullHeight }) => {
+const TranslateYFramer = ({ children, durVal = 0.5, fullHeight }) => {
     const control = useAnimation();
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
     // const [val, setVal] = useState(75);

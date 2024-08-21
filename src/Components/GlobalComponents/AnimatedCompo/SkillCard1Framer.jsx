@@ -24,12 +24,12 @@ const SkillCard1Framer = ({children, dVal=0.5}) => {
             opacity: 1,
             transition: {
                 delay: dVal,
-                duration: 0.4,
-                ease: "easeInOut",
+                // duration: 0.4,
+                // ease: "easeInOut",
                 type: 'spring',
-                bounce: 0.2,
-                stiffness: 200,
-                damping: 20,
+                bounce: 0.5,
+                stiffness: 100,
+                damping: 10,
             }
         }
     };
