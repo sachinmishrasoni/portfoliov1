@@ -44,21 +44,15 @@ const About = () => {
                     <TranslateYFramer>
                         <Heading headingName={'About Me'} headingIcon={Person} />
                     </TranslateYFramer>
-                    {/* <Box className='tabView-desktop' display={activeView === 'desktop' ? 'block' : 'none'}>
-                        <Grid container rowGap={1}>
-                            <Grid xxs={12} md={12}><TranslateYFramer><ESETabsBox /></TranslateYFramer></Grid>
-                            <Grid xxs={12} md={6} pr={{ xxs: 0, md: 0.5 }}><TranslateXFramer XVal='-100vw'><CardBox title='Hobbies' icon={SportsVolleyball} content={<HobbiesSection />} /></TranslateXFramer></Grid>
-                            <Grid xxs={12} md={6} pl={{ xxs: 0, md: 0.5 }}><TranslateXFramer XVal='100vw'><CardBox title='Languages' icon={Language} content={<LanguageSection />} /></TranslateXFramer></Grid>
-                        </Grid>
-                    </Box> */}
                     <Box className='boxView-mobiles'>
                         <Grid container spacing={1.5}>
                             <Grid item xxs={12} md={12} >
                                 <AboutSection />
                             </Grid>
-                            <Grid xxs={12} md={12} position={'relative'} pr={{ xxs: 0, md: 0.5 }}>
-                                <TranslateXFramer XVal='100vw'>
-                                    <CardBox title='Skills' icon={Psychology} content={<SkillSection />} />
+
+                            <Grid xxs={12} md={6}>
+                                <TranslateXFramer XVal='100vw' fullHeight={true}>
+                                    <CardBox title='Experiences' icon={BsPersonWorkspace} content={<ExperienceSection />} paddingLeft={0} />
                                 </TranslateXFramer>
                             </Grid>
                             <Grid xxs={12} md={6} pl={{ xxs: 0, md: 0.5 }}>
@@ -66,9 +60,9 @@ const About = () => {
                                     <CardBox title='Education' icon={School} content={<EducationSection />} paddingLeft={0} />
                                 </TranslateXFramer>
                             </Grid>
-                            <Grid xxs={12} md={6}>
-                                <TranslateXFramer XVal='100vw' fullHeight={true}>
-                                    <CardBox title='Experiences' icon={BsPersonWorkspace} content={<ExperienceSection />} paddingLeft={0} />
+                            <Grid xxs={12} md={12} position={'relative'} pr={{ xxs: 0, md: 0.5 }}>
+                                <TranslateXFramer XVal='100vw'>
+                                    <CardBox title='Skills' icon={Psychology} content={<SkillSection />} />
                                 </TranslateXFramer>
                             </Grid>
                             <Grid xxs={12} md={6} pr={{ xxs: 0, md: 0.5 }}>
