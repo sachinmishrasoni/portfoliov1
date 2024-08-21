@@ -1,64 +1,67 @@
 import React from 'react'
-import { Box, Stack, Typography } from '@mui/material';
-import EduCard from './Cards/EduCard';
-import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFramer';
+import { Box, Typography, useTheme } from '@mui/material';
+// import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFramer';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import { FaCheck } from "react-icons/fa6";
+import { educationData } from '../../../Data/education';
+import EducationCard from './Cards/EducationCard';
 
 const EducationSection = () => {
-    const educationData = [
-        {
-            title: `Certification`,
-            year: '2022-2023',
-            course: 'Full Stack Development',
-            address: 'Ducat Pitampura',
-            marks: 'Percen: --%'
-        },
-        {
-            title: 'Under Gradute',
-            year: '2019-2022',
-            course: 'B.Voc(Software Development)',
-            address: 'IPU University, Dwarka, New Delhi',
-            marks: 'CGPA: 8.62'
-        },
-        {
-            title: 'Intermediate (12th)',
-            year: '2017-2019',
-            course: 'PCM',
-            address: 'BSEB, Patna',
-            marks: 'Percen: 69.2%'
-        },
-        {
-            title: 'Diploma',
-            year: '2017-2018',
-            course: 'Advance Diploma in Computer Application (ADCA)',
-            address: 'Target Point Computer Education, Patna',
-            marks: 'Percen: 89%'
-        },
-        {
-            title: 'Matric (10th)',
-            year: '2016-2017',
-            course: 'All Necessery Subject',
-            address: 'BSEB, Patna',
-            marks: 'Percen: 67.2%'
-        },
-    ]
+    const theme = useTheme();
     return (
         <>
-            <Box className='education-section' sx={{ height: '100%', backgroundColor: '', position: 'relative'}}>
-                <Typography variant='caption' component={'div'} textAlign={'center'} color={'gray'} mb={0.5} >Education & Courses</Typography>
-                <Box
-                    className='staight-line'
+            <Box className='education-section' sx={{ height: '100%', backgroundColor: '', position: 'relative' }}>
+                <Typography variant='caption' component={'div'} textAlign={'center'} color={'gray'} mb={0.5} >Degree & Courses</Typography>
+                <Timeline
                     sx={{
-                        width: '7px',
-                        height: {xxs: '95%', sm: '120%', md: '100%'},
-                        backgroundColor: 'mypresetcolor.foregroundColor',
-                        borderRadius: '10px',
-                        position: 'absolute',
-                        left: '10px',
+                        [`& .${timelineItemClasses.root}:before`]: {
+                            flex: 0,
+                            padding: 0,
+                        },
+                        '& .MuiTimelineDot-root': {
+                            width: 15,
+                            height: 15,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        },
+                        '&.MuiTimeline-root': {
+                            p: 0,
+                            pl: 2,
+                            mt: 0,
+                            '& .MuiTimelineContent-root': {
+                                pr: 0
+                            }
+                        }
                     }}
-                />
-                <Stack gap={1} pb={2}>
-                    { educationData.map((item, index) => <TranslateYFramer key={index}><EduCard data={item}/></TranslateYFramer>)}
-                </Stack>
+                >
+                    {
+                        educationData.map((item, index) => (
+                            <TimelineItem key={index}>
+                                <TimelineSeparator>
+                                    <TimelineDot
+                                        sx={{
+                                            color: 'black',
+                                            backgroundColor: 'mypresetcolor.highlightColor',
+                                            boxShadow: `1px 1px 5px ${theme.palette.mypresetcolor.highlightColor},
+                            -1px -1px 5px ${theme.palette.mypresetcolor.highlightColor}`
+                                        }} >
+                                        <FaCheck size={50} />
+                                    </TimelineDot>
+                                    {index < educationData.length - 1 && <TimelineConnector />}
+                                </TimelineSeparator>
+                                <TimelineContent>
+                                    <EducationCard data={item} />
+                                </TimelineContent>
+                            </TimelineItem>
+                        ))
+                    }
+                </Timeline>
             </Box>
         </>
     )

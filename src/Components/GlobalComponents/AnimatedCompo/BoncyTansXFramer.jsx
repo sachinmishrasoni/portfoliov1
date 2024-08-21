@@ -3,9 +3,9 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 
-const BoncyTransXFramer = ({ children, XVal='100vw', durVal=1 }) => {
+const BoncyTransXFramer = ({ children, XVal = '100vw', durVal = 1 }) => {
     const control = useAnimation();
-    const [ref, inView] = useInView({ threshold: 0.3 });
+    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
 
     useEffect(() => {
         if (inView) {

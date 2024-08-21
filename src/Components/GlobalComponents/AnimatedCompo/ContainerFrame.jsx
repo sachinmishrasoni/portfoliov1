@@ -26,7 +26,7 @@ const ContainerFrame = ({ children }) => {
         }
     };
     const control = useAnimation();
-    const [ref, inView] = useInView({ threshold: 0.4 });
+    const [ref, inView] = useInView({  triggerOnce: true, threshold: 0.4 });
     useEffect(() => {
         console.log(inView)
         if (inView) {

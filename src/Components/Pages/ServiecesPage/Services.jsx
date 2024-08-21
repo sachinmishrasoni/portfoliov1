@@ -2,59 +2,15 @@ import React from 'react'
 import { Box, Container, Stack, Typography } from '@mui/material';
 import Heading from '../../GlobalComponents/Heading';
 import { DesignServices } from '@mui/icons-material';
-// import ServicesCard from './ServicesCard';
-import WebLogoImg from '../../../Image/web-development.png';
-import AppLogoImg from '../../../Image/app-development.png';
-import GraphicLogoImg from '../../../Image/graphic-design1.png';
 import ServicesCard2 from './ServicesCard2';
 import ServicesCard1 from './ServicesCard1';
 import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFramer';
 import TextEffectFramer from '../../GlobalComponents/AnimatedCompo/TextEffectFramer';
 import TranslateXFramer from '../../GlobalComponents/AnimatedCompo/TranslateXFramer';
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Autoplay, Pagination } from 'swiper/modules'
-// import 'swiper/css';
-
+import { serviceCardDetails } from '../../../Data/services';
 
 
 const Services = () => {
-    const serviceCardDetails = [
-        {
-            cardHeading: 'Web Development',
-            cardImg: WebLogoImg,
-            cardPara: 'Sam Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates dolorem delectus, libero maiores exercitationem provident amet dicta at vitae illo quod. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates dolorem delectus, libero maiores exercitationem provident amet dicta at vitae illo quod. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates dolorem delectus. Voluptates dolorem delectus, libero maiores exercitationem provident amet dicta at vitae illo quod. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates dolorem delectus.'
-        },
-        {
-            cardHeading: 'App Development',
-            cardImg: AppLogoImg,
-            cardPara: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates dolorem delectus, libero maiores exercitationem provident amet dicta at vitae illo quod?'
-        },
-        {
-            cardHeading: 'Graphic Design',
-            cardImg: GraphicLogoImg,
-            cardPara: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates dolorem delectus, libero maiores exercitationem provident amet dicta at vitae illo quod?'
-        },
-
-    ];
-
-    // const swiperRef = useRef();
-    // useEffect(() => {
-    //     const checkIfCilckOutside = (e) => {
-    //         if (swiperRef.current && !swiperRef.current.contains(e.target)) {
-    //             swiperRef?.current.swiper.autoplay.start();
-    //         }
-    //     }
-    //     document.addEventListener('mousedown', checkIfCilckOutside);
-    //     return () => {
-    //         document.addEventListener('mousedown', checkIfCilckOutside);
-    //     }
-    // })
-    // const pagination = {
-    //     clickable: true,
-    //     renderBullet: function (index, className,) {
-    //         return '<span class="' + className + '">' + (serviceCardDetails[index].heading.slice(0, 3)) + '</span>';
-    //     },
-    // };
 
     return (
         <>
@@ -149,7 +105,7 @@ const Services = () => {
                 <TranslateYFramer>
                     <Stack display={{ xxs: 'none', sm: 'flex' }} gap={3}>
                         {
-                            serviceCardDetails.map((item, index) => <TranslateXFramer key={index} XVal={index % 2 === 0 ? '100vw' : '-100vw'} durVal={1.5}><ServicesCard2 data={item} direction={index % 2 === 0 ? 'right' : 'left'} /></TranslateXFramer>)
+                            serviceCardDetails.map((item, index) => <TranslateXFramer key={index} XVal={index % 2 === 0 ? '100vw' : '-100vw'} durVal={1.5}><ServicesCard2 data={item} direction={'right'} /></TranslateXFramer>)
                         }
                     </Stack>
                 </TranslateYFramer>

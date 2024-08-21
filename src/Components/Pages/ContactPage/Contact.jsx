@@ -245,14 +245,14 @@ const Contact = () => {
                         </Grid>
                         <Grid item xxs={12} sm={4} md={3} order={{ xxs: 2, sm: 1 }} py={{ xxs: 1.5, sm: 0 }}>
                             <Stack display={'flex'} flexDirection={'column'} alignItems={'center'} gap={1.5} sx={{ '& div': { width: '100%' } }}>
-                                <TranslateXFramer durVal={1}>
+                                <TranslateXFramer XVal='-100vw' durVal={1.5}>
                                     <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Gmail'} cardIcon={Mail} />} backComponent={<ContactBackCard cardText={'sachinmishraf103@gamil.com'} sendMessageHangler={mailHandler} />} />
                                 </TranslateXFramer>
-                                <TranslateXFramer durVal={1.5}>
+                                <TranslateXFramer XVal='100vw' durVal={1.5}>
                                     <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Whatsapp'} cardIcon={WhatsApp} />} backComponent={<ContactBackCard cardText={'+91-7545823925'} sendMessageHangler={whatsAppHandler} />} />
                                 </TranslateXFramer>
-                                <TranslateXFramer durVal={2}>
-                                    <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Telegram'} cardIcon={Telegram} />} backComponent={<ContactBackCard cardText={'Sachin Mishra Soni'} sendMessageHangler={telegramHandler} />} />
+                                <TranslateXFramer XVal='-100vw' durVal={1.5}>
+                                    <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Telegram'} cardIcon={Telegram} />} backComponent={<ContactBackCard cardText={'@sachinmishrasoni'} sendMessageHangler={telegramHandler} />} />
                                 </TranslateXFramer>
                             </Stack>
                         </Grid>

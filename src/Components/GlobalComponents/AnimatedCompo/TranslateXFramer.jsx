@@ -3,9 +3,9 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 
-const TranslateXFramer = ({ children, XVal='100vw', durVal=1 }) => {
+const TranslateXFramer = ({ children, XVal='100vw', durVal=1, fullHeight }) => {
     const control = useAnimation();
-    const [ref, inView] = useInView({ threshold: 0.3 });
+    const [ref, inView] = useInView({  triggerOnce: true, threshold: 0.3 });
 
     useEffect(() => {
         if (inView) {
@@ -32,11 +32,12 @@ const TranslateXFramer = ({ children, XVal='100vw', durVal=1 }) => {
 
     return (
         <>
-            <div className='transXframer-outer' ref={ref}>
+            <div className='transXframer-outer' ref={ref} style={{ height: fullHeight && '100%'}}>
                 <motion.div
                     className='transXframer-inner'
                     variants={translateXVarients}
                     animate={control}
+                    style={{ height: fullHeight && '100%'}}
                 >
                     {children}
                 </motion.div>

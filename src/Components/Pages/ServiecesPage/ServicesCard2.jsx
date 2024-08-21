@@ -24,16 +24,48 @@ const ServicesCard2 = ({ data, direction = 'right' }) => {
                     '&:hover .empty-box': {
                         backgroundColor: 'mypresetcolor.foregroundColor',
                         transition: 'all 0.5s ease-in'
-                    }
+                    },
+                    '& .heading': {
+                        position: 'relative',
+
+                        '&::before': {
+                            content: '""',
+                            width: '0px',
+                            height: '3px',
+                            borderRadius: '5px',
+                            backgroundColor: 'mypresetcolor.highlightColor',
+                            position: 'absolute',
+                            left: 0,
+                            bottom: -5,
+                            transition: 'all 0.3s ease-in'
+                        },
+                    },
+                    '&:hover .heading::before': {
+                        width: '150px',
+                    },
+                    // '& img': {
+                    //     position: 'relative',
+                    //     '&::before': {
+                    //         content: '""', 
+                    //         width: '50px',
+                    //         height: '10px',
+                    //         borderRadius: '5px',
+                    //         backgroundColor: 'black ',
+                    //         position: 'absolute',
+                    //         left: 0,
+                    //         bottom: -5,
+                    //     }
+                    // }
+
                 }}
             >
                 <Stack
                     display={'flex'}
-                    flexDirection={{xxs: 'column', sm: direction === 'right' ? 'row' : 'row-reverse'}}
+                    flexDirection={{ xxs: 'column', sm: direction === 'right' ? 'row' : 'row-reverse' }}
                 >
                     <Paper className='card-image-box'
                         sx={{
-                            width: {xxs: 'auto', sm: '275px'},
+                            width: { xxs: 'auto', sm: '275px' },
                             // minHeight: '275px',
                             borderRadius: '10px',
                             backgroundColor: 'mypresetcolor.foregroundColor',
@@ -47,7 +79,7 @@ const ServicesCard2 = ({ data, direction = 'right' }) => {
                             component={'img'}
                             src={cardImg}
                             alt='Web-Development-Image'
-                            height={{xxs: 175, sm: 200}}
+                            height={{ xxs: 175, sm: 200 }}
                         />
                     </Paper>
                     <Box className='card-content'
@@ -55,18 +87,34 @@ const ServicesCard2 = ({ data, direction = 'right' }) => {
                         px={2}
                         py={3}
                         sx={{
-                            width: {xxs: 'auto', sm: 'calc(100% - 275px)'},
-                            overflowY:{xxs: 'auto', sm: 'auto'},
+                            width: { xxs: 'auto', sm: 'calc(100% - 275px)' },
+                            overflowY: { xxs: 'auto', sm: 'auto' },
                         }}
                     >
-                        <TextEffectFramer><Typography variant='h4' fontWeight={'bold'} textAlign={{xxs: 'center', sm: 'start'}} mb={2}>{cardHeading}</Typography></TextEffectFramer>
+                        <TextEffectFramer><Typography className='heading' variant='h4' fontWeight={'bold'} textAlign={{ xxs: 'center', sm: 'start' }} mb={2} sx={{
+                            // position: 'relative',
+
+                            // '&::before': {
+                            //     content: '""',
+                            //     width: '0px',
+                            //     height: '3px',
+                            //     backgroundColor: 'pink',
+                            //     position: 'absolute',
+                            //     left: 0,
+                            //     bottom: -5,
+                            //     transition: 'all 0.3s ease-in'
+                            // },
+                            // '&:hover::before': {
+                            //     width: '150px',
+                            // }
+                        }}>{cardHeading}</Typography></TextEffectFramer>
                         <TextEffectFramer><Typography>{cardPara}</Typography></TextEffectFramer>
                     </Box>
                     <Paper
                         className='empty-box'
                         sx={{
-                            width: {xxs: '25px', md: '50px'},
-                            backgroundColor:'mypresetcolor.highlightColor',
+                            width: { xxs: '25px', md: '50px' },
+                            backgroundColor: 'mypresetcolor.foregroundColor',
                             borderRadius: direction === 'right' ? '0px 10px 10px 0' : '10px 0px 0px 10px',
                         }}
                     />

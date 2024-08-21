@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Divider, Paper, Stack, Typography, useTheme } from '@mui/material';
+import { Box, Paper, Stack, Typography, useTheme } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -18,7 +18,6 @@ const AboutSection = () => {
                 sx={{
                     backgroundColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.2)': 'rgba(0,0,0,0.1)',
                     borderRadius: '10px',
-                    mb: 1,
                     position: 'relative',
                     overflow: 'hidden'
                 }} >
@@ -58,9 +57,9 @@ const AboutSection = () => {
                                 </SwiperSlide>
                             )
                         }
-                        <Box sx={{ height: '100%', width: '100%', bgcolor: 'rgba(0, 0, 0, 0.0)', position: 'absolute', top: '0', left: '0px', zIndex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        {/* <Box sx={{ height: '100%', width: '100%', bgcolor: 'rgba(0, 0, 0, 0.0)', position: 'absolute', top: '0', left: '0px', zIndex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <Typography variant='h4' fontWeight={'bold'} textAlign={'center'} sx={{ display: 'inline-block', backgroundColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(3px)', padding: '10px 20px', borderRadius: '5px' }}>About <span style={{ color: theme.palette.mypresetcolor.highlightColor }}>Me</span><Divider /></Typography>
-                        </Box>
+                        </Box> */}
                     </Swiper>
 
                     {/* DP Circle */}

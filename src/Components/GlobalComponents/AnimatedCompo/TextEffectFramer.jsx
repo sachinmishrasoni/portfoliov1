@@ -4,28 +4,28 @@ import { useInView } from 'react-intersection-observer';
 
 const TextEffectFramer = ({children, secVal=1.5}) => {
     const control = useAnimation();
-    const [ref, inView] = useInView({ threshold: 0.3 });
+    const [ref, inView] = useInView({  triggerOnce: true, threshold: 0.3 });
     const [aniVal, setAniVal] = useState(50);
-    const [prevScrollY, setPrevScrollY] = useState(0);
-    const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-        if (currentScrollY < prevScrollY) {
-            // when scrolling up
-            setAniVal(50)
-        } else {
-            // when scrolling down
-            setAniVal(-50)
-        }
-        setPrevScrollY(currentScrollY);
-    };
+    // const [prevScrollY, setPrevScrollY] = useState(0);
+    // const handleScroll = () => {
+    //     const currentScrollY = window.scrollY;
+    //     if (currentScrollY < prevScrollY) {
+    //         // when scrolling up
+    //         setAniVal(50)
+    //     } else {
+    //         // when scrolling down
+    //         setAniVal(-50)
+    //     }
+    //     setPrevScrollY(currentScrollY);
+    // };
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll, false);
-        return () => {
-            window.removeEventListener('scroll', handleScroll, false);
-        };
-        // eslint-disable-next-line
-    }, [prevScrollY]);
+    // useEffect(() => {
+    //     window.addEventListener('scroll', handleScroll, false);
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll, false);
+    //     };
+    //     // eslint-disable-next-line
+    // }, [prevScrollY]);
 
     useEffect(() => {
         if (inView) {

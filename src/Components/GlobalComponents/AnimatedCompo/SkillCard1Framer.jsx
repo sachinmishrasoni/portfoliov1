@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 
 const SkillCard1Framer = ({children, dVal=0.5}) => {
     const control = useAnimation();
-    const [ref, inView] = useInView({ threshold: 0.3 });
+    const [ref, inView] = useInView({  triggerOnce: true , threshold: 0.3 });
 
     useEffect(() => {
         if (inView) {
@@ -23,11 +23,13 @@ const SkillCard1Framer = ({children, dVal=0.5}) => {
             scale: 1,
             opacity: 1,
             transition: {
-                deley: 1,
-                duration: dVal,
+                delay: dVal,
+                duration: 0.4,
+                ease: "easeInOut",
                 type: 'spring',
-                bounce: 0.1
-
+                bounce: 0.2,
+                stiffness: 200,
+                damping: 20,
             }
         }
     };
@@ -37,6 +39,7 @@ const SkillCard1Framer = ({children, dVal=0.5}) => {
             <div ref={ref}>
                 <motion.div
                     variants={cardVarients}
+                    initial="hidden"
                     animate={control}
                 >
                     {children}

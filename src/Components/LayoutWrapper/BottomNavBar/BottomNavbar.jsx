@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback  } from 'react';
 import { Box, Paper } from '@mui/material';
 import { DesignServices, Home, Person, AccountTreeTwoTone, ContactMailTwoTone } from '@mui/icons-material';
 import BtnCompo from './BtnCompo';
+import debounce from 'lodash/debounce';
 
 const MobileViewNavBar = () => {
     const sections = useRef([]);
@@ -17,33 +18,37 @@ const MobileViewNavBar = () => {
 
     const navBtnFun = (val) => {
         setActiveBtn(val);
+        if (val === 'Home') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
     };
 
-    // 
-    const listenToScroll = () => {
-        // nav active when scroll
+    const listenToScroll = useCallback(debounce(() => {
         const pageYOffset = window.pageYOffset + 200;
         let newActiveSection = null;
         sections.current.forEach((section) => {
             const sectionOffsetTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
-
+    
             if (pageYOffset >= sectionOffsetTop && pageYOffset < sectionOffsetTop + sectionHeight) {
                 newActiveSection = section.id;
             }
         });
         setActiveBtn(newActiveSection);
-
-        // nav hide and when Scroll
+    
         let hieghtToHidden = 150;
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-
+    
         if (winScroll > hieghtToHidden) {
-            setIsVisible(true)
+            setIsVisible(true);
         } else {
-            setIsVisible(false)
+            setIsVisible(false);
         }
-    }
+    }, 200), [sections.current]);
+
     useEffect(() => {
         sections.current = document.querySelectorAll('[data-section]');
 

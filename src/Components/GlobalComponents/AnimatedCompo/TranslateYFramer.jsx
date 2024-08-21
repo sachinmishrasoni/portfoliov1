@@ -3,30 +3,30 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 
-const TranslateYFramer = ({ children, durVal=1 }) => {
+const TranslateYFramer = ({ children, durVal = 1, fullHeight }) => {
     const control = useAnimation();
-    const [ref, inView] = useInView({ threshold: 0.3 });
+    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
     const [val, setVal] = useState(75);
-    const [prevScrollY, setPrevScrollY] = useState(0);
-    const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-        if (currentScrollY < prevScrollY) {
-            // when scrolling up
-            setVal(75)
-        } else {
-            // when scrolling down
-            setVal(-75)
-        }
-        setPrevScrollY(currentScrollY);
-    };
+    // const [prevScrollY, setPrevScrollY] = useState(0);
+    // const handleScroll = () => {
+    //     const currentScrollY = window.scrollY;
+    //     if (currentScrollY < prevScrollY) {
+    //         // when scrolling up
+    //         setVal(75)
+    //     } else {
+    //         // when scrolling down
+    //         setVal(-75)
+    //     }
+    //     setPrevScrollY(currentScrollY);
+    // };
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll, false);
-        return () => {
-            window.removeEventListener('scroll', handleScroll, false);
-        };
-        // eslint-disable-next-line
-    }, [prevScrollY]);
+    // useEffect(() => {
+    //     window.addEventListener('scroll', handleScroll, false);
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll, false);
+    //     };
+    //     // eslint-disable-next-line
+    // }, [prevScrollY]);
 
     useEffect(() => {
         if (inView) {
@@ -56,12 +56,12 @@ const TranslateYFramer = ({ children, durVal=1 }) => {
 
     return (
         <>
-            <div ref={ref}>
+            <div ref={ref} style={{ height: fullHeight && '100%' }}>
                 <motion.div
                     variants={translateYVarients}
-                    // initial='hidden'
+                    initial='hidden'
                     animate={control}
-
+                    style={{ height: fullHeight && '100%' }}
                 >
                     {children}
                 </motion.div>

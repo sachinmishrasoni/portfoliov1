@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 
 const ScaleFramer = ({children, durVal=0.5}) => {
     const control = useAnimation();
-    const [ref, inView] = useInView({ threshold: 0.3 });
+    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
 
     useEffect(() => {
         if (inView) {
