@@ -6,6 +6,8 @@ import Subject from '../../../Image/Subject.png';
 import BtnHoverFramer from '../../GlobalComponents/AnimatedCompo/BtnHoverFramer';
 import TextEffectFramer from '../../GlobalComponents/AnimatedCompo/TextEffectFramer';
 import TranslateXFramer from '../../GlobalComponents/AnimatedCompo/TranslateXFramer';
+import IconShow from './IconShow';
+import dottedImg from '../../../Image/7694366b.png'
 
 const Home = () => {
     const theme = useTheme();
@@ -24,16 +26,34 @@ const Home = () => {
         link.click();
     };
     return (
-        <>
+        <Box
+            id={'home'}
+            data-section
+            sx={{
+                minHeight: 'calc(100vh - 56px )',
+                display: 'flex',
+                alignItems: 'center',
+                position: 'relative',
+                // overflow: 'hidden',
+               
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: `url('${dottedImg}')`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    // backgroundPosition: 'center',
+                    // mixBlendMode: 'multiply',
+                    opacity: (theme) => theme.palette.mode === 'light' ? 0.05 : 0.1,
+                    zIndex: -50,
+                    // filter: 'blur(2px)'
+                }
+            }}>
             <Container
-                id={'home'}
-                data-section
                 sx={{
-                    minHeight: 'calc(100vh - 56px )',
-                    display: 'flex',
-                    alignItems: 'center',
                     position: 'relative',
-                    // overflow: 'hidden',
                     px: { xxs: '12px', lg: 0 },
                     py: 7,
                 }}
@@ -86,6 +106,7 @@ const Home = () => {
                         }}
                     />
                 </Box> */}
+                <IconShow />
                 <Box height={'100%'} display={'flex'} flexDirection={{ xxs: 'column-reverse', sm: 'row' }} justifyContent={'center'} alignItems={'center'}>
                     {/* Content */}
                     <Box mt={{ xxs: 5, md: 0 }}>
@@ -201,7 +222,7 @@ const Home = () => {
                     </TranslateXFramer>
                 </Box>
             </Container>
-        </>
+        </Box>
     )
 }
 

@@ -9,6 +9,7 @@ import ProjectData from './ProjectData.json';
 import { useTheme } from '@emotion/react';
 import ScaleFramer from '../../GlobalComponents/AnimatedCompo/ScaleFramer';
 import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFramer';
+import CounterShow from '../../Common/CounterShow';
 
 const Projects = () => {
     const swiperRef = useRef();
@@ -41,92 +42,92 @@ const Projects = () => {
     }
     return (
         <>
-            <Box
+            <Container
+                disableGutters
                 id='projects'
                 data-section
                 sx={{
                     width: '100%',
                     minHeight: 'calc(100vh)',
-                    py: 7
-                }}
-            >
-                <Container disableGutters>
-                    <TranslateYFramer><Heading headingName={'Projects'} headingIcon={AccountTreeTwoTone} /></TranslateYFramer>
-                    <TranslateYFramer>
-                        <Box id='project-data' className='tabBar-outerBox' sx={{ p: 2, pt: 1, border: '3px none skyblue', backgroundColor: 'rgba(0,0,0,0.0)', borderRadius: '10px', position: 'relative' }}>
-                            <Tabs
-                                className='tabBar'
-                                value={activeTab}
-                                onChange={tabChangerFunc}
-                                // centered
-                                // variant='fullWidth'
-                                variant="scrollable"
-                                scrollButtons="auto"
-                                allowScrollButtonsMobile
-                                sx={{
+                    py: 7,
+                    position: 'relative'
+                }}>
+                <CounterShow count='03' />
+                <TranslateYFramer><Heading heading={'Projects'} icon={AccountTreeTwoTone} caption='My work' /></TranslateYFramer>
+                <TranslateYFramer>
+                    <Box id='project-data' className='tabBar-outerBox' sx={{ p: 2, pt: 1, border: '3px none skyblue', backgroundColor: 'rgba(0,0,0,0.0)', borderRadius: '10px', position: 'relative' }}>
+                        <Tabs
+                            className='tabBar'
+                            value={activeTab}
+                            onChange={tabChangerFunc}
+                            // centered
+                            // variant='fullWidth'
+                            variant="scrollable"
+                            scrollButtons="auto"
+                            allowScrollButtonsMobile
+                            sx={{
+                                minHeight: '35px',
+                                '& .MuiTab-root': {
                                     minHeight: '35px',
-                                    '& .MuiTab-root': {
-                                        minHeight: '35px',
-                                        padding: '0 16px',
-                                        paddingTop: '5px',
-                                        paddingBottom: '5px',
-                                    },
-                                    '& .MuiTabs-flexContainer': {
-                                        justifyContent: { xxs: 'flex-start', sm: 'center' },
-                                        alignItems: 'center'
-                                    }
+                                    padding: '0 16px',
+                                    paddingTop: '5px',
+                                    paddingBottom: '5px',
+                                },
+                                '& .MuiTabs-flexContainer': {
+                                    justifyContent: { xxs: 'flex-start', sm: 'center' },
+                                    alignItems: 'center'
+                                }
+                            }}
+                        >
+                            <Tab label={'All'} />
+                            <Tab label={'JavaScript'} />
+                            <Tab label={'React'} />
+                            <Tab label={'Python'} />
+                        </Tabs>
+                        <Divider sx={{ position: 'relative', bottom: '2px', borderBottomWidth: 'medium' }} />
+                        <Box
+                            className='swiper-tabBar-box'
+                            sx={{
+                                '& .swiper': {
+                                    // height: '800px',
+                                    position: 'relative',
+                                }
+                            }}
+                        >
+                            <Swiper
+                                className='swiper-tabBar'
+                                spaceBetween={5}
+                                slidesPerView={1}
+                                onSlideChange={(swiper) => setActiveTab(swiper.activeIndex)}
+                                initialSlide={activeTab}
+                                onSwiper={(swiper) => {
+                                    swiperRef.current = swiper;
                                 }}
-                            >
-                                <Tab label={'All'} />
-                                <Tab label={'JavaScript'} />
-                                <Tab label={'React'} />
-                                <Tab label={'Python'} />
-                            </Tabs>
-                            <Divider sx={{ position: 'relative', bottom: '2px', borderBottomWidth: 'medium' }} />
-                            <Box
-                                className='swiper-tabBar-box'
-                                sx={{
-                                    '& .swiper': {
-                                        // height: '800px',
-                                        position: 'relative',
-                                    }
-                                }}
-                            >
-                                <Swiper
-                                    className='swiper-tabBar'
-                                    spaceBetween={5}
-                                    slidesPerView={1}
-                                    onSlideChange={(swiper) => setActiveTab(swiper.activeIndex)}
-                                    initialSlide={activeTab}
-                                    onSwiper={(swiper) => {
-                                        swiperRef.current = swiper;
-                                    }}
 
-                                >
-                                    <SwiperSlide>
-                                        <Box >
-                                            <Stack display={'flex'} flexDirection={{ xxs: 'row', md: 'row' }} justifyContent={'center'} alignItems={'flex-start'} flexWrap={'wrap'} gap={2} py={3}>
-                                                {
-                                                    currentProjectPage.map((items, index) => <ScaleFramer key={index} durVal={index + 1 / 2}><ProjectCard data={items} /></ScaleFramer>)
-                                                }
-                                            </Stack>
-                                            {/* Pagination */}
-                                            <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                                                <a href="#project-data">
-                                                    <Pagination count={Math.ceil(ProjectData.length / projectPerPage)} color="primary" onChange={paginationHandler} />
-                                                </a>
-                                            </Box>
+                            >
+                                <SwiperSlide>
+                                    <Box >
+                                        <Stack display={'flex'} flexDirection={{ xxs: 'row', md: 'row' }} justifyContent={'center'} alignItems={'flex-start'} flexWrap={'wrap'} gap={2} py={3}>
+                                            {
+                                                currentProjectPage.map((items, index) => <ScaleFramer key={index} durVal={index + 1 / 2}><ProjectCard data={items} /></ScaleFramer>)
+                                            }
+                                        </Stack>
+                                        {/* Pagination */}
+                                        <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                                            <a href="#project-data">
+                                                <Pagination count={Math.ceil(ProjectData.length / projectPerPage)} color="primary" onChange={paginationHandler} />
+                                            </a>
                                         </Box>
-                                    </SwiperSlide>
-                                    <SwiperSlide >JavaScipt</SwiperSlide>
-                                    <SwiperSlide >React</SwiperSlide>
-                                    <SwiperSlide >Python</SwiperSlide>
-                                </Swiper>
-                            </Box>
+                                    </Box>
+                                </SwiperSlide>
+                                <SwiperSlide >JavaScipt</SwiperSlide>
+                                <SwiperSlide >React</SwiperSlide>
+                                <SwiperSlide >Python</SwiperSlide>
+                            </Swiper>
                         </Box>
-                    </TranslateYFramer>
-                </Container>
-            </Box>
+                    </Box>
+                </TranslateYFramer>
+            </Container>
         </>
     )
 }

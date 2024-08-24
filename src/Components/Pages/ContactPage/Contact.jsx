@@ -13,6 +13,7 @@ import TextEffectFramer from '../../GlobalComponents/AnimatedCompo/TextEffectFra
 import ConfirmDialog from './ConfirmDialog';
 import SnackBar from './SnackBar';
 import SkillCard1Framer from '../../GlobalComponents/AnimatedCompo/SkillCard1Framer';
+import CounterShow from '../../Common/CounterShow';
 // Regular Expression
 const fullName_Exp = /^[A-Za-z ]{2,50}$/;
 const emailId_Exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -118,152 +119,153 @@ const Contact = () => {
     }
     const telegramHandler = () => {
         const usernameOrPhoneNumber = 'sachinmishrasoni';
-        const message = 'Hello Sam'; 
+        const message = 'Hello Sam';
         const telegramUrl = `tg://msg?to=${usernameOrPhoneNumber}&text=${encodeURIComponent(message)}`;
         window.open(telegramUrl, '_blank');
     }
 
     return (
         <>
-            <Box
+            <Container
+                disableGutters
                 id='contact'
                 data-section
                 sx={{
                     width: '100%',
                     minHeight: 'calc(100vh - 56px*2)',
-                    pt: 7
-                }}
-            >
-                <Container disableGutters >
-                    <TranslateYFramer><Heading headingName={'Contact'} headingIcon={ContactsTwoTone} /></TranslateYFramer>
-                    <Grid container justifyContent={'space-between'} px={{ xxs: 1.5, lg: 0 }}>
-                        <Grid item xxs={12} sm={4} md={3} order={{ xxs: 1, sm: 1 }} sx={{ '& .transXframer-inner, .transXframer-outer': { height: '100%' } }}>
-                            <TranslateXFramer XVal='-100vw' durVal={1}>
-                                <Paper sx={{
-                                    height: '100%',
-                                    p: 2,
-                                    backgroundColor: 'mypresetcolor.foregroundColor',
-                                    borderRadius: '10px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    position: 'relative'
-                                }}>
-                                    <Box className='contact-icon-img upDownAnimation' position={'relative'}>
-                                        <Box
-                                            component={'img'}
-                                            src={ContactIconImg}
-                                            title='Cotact Img'
-                                            width={{ xxs: 100, sm: 150 }}
-                                        />
-                                        <Box sx={{
-                                            width: { xxs: 100, sm: 150 },
-                                            height: '10px',
-                                            backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                                            borderRadius: '50%',
-                                            position: 'absolute',
-                                            bottom: '-5px',
-                                            filter: 'blur(2px)',
-                                        }} />
-                                    </Box>
-                                    <TextEffectFramer><Typography variant='h6' color={'gray'} textAlign={'center'} fontWeight={600} mt={0.5}>Get In Touch</Typography></TextEffectFramer>
-                                    <TextEffectFramer><Typography variant='body2' textAlign={'center'} >Let's connect and code together. Feel free to drop me a message; I'm just a click away.</Typography></TextEffectFramer>
-                                </Paper>
-                            </TranslateXFramer>
-                        </Grid>
-                        <Grid item xxs={12} sm={4} md={6} order={{ xxs: 3, sm: 1 }} px={{ xxs: 0, sm: 1.5 }} >
-                            <form style={{ width: '100%' }}>
-                                <SkillCard1Framer>
-                                    <TextField
-                                        fullWidth
-                                        required
-                                        autoComplete='nope'
-                                        name='full_name'
-                                        label={'Full Name'}
-                                        value={full_name}
-                                        onChange={userInputHandler}
-                                        error={!isFullNameValid ? true : false}
-                                        helperText={!isFullNameValid ? "Oops Not Valid.!" : ''}
+                    pt: 7,
+                    position: 'relative'
+                }} >
+                <CounterShow count='04' />
+                
+                <TranslateYFramer><Heading heading={'Contact'} icon={ContactsTwoTone} caption='Way to' /></TranslateYFramer>
+                <Grid container justifyContent={'space-between'} px={{ xxs: 1.5, lg: 0 }}>
+                    <Grid item xxs={12} sm={4} md={3} order={{ xxs: 1, sm: 1 }} sx={{ '& .transXframer-inner, .transXframer-outer': { height: '100%' } }}>
+                        <TranslateXFramer XVal='-100vw' durVal={1}>
+                            <Paper sx={{
+                                height: '100%',
+                                p: 2,
+                                backgroundColor: 'mypresetcolor.foregroundColor',
+                                borderRadius: '10px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                position: 'relative'
+                            }}>
+                                <Box className='contact-icon-img upDownAnimation' position={'relative'}>
+                                    <Box
+                                        component={'img'}
+                                        src={ContactIconImg}
+                                        title='Cotact Img'
+                                        width={{ xxs: 100, sm: 150 }}
                                     />
-                                </SkillCard1Framer>
+                                    <Box sx={{
+                                        width: { xxs: 100, sm: 150 },
+                                        height: '10px',
+                                        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                                        borderRadius: '50%',
+                                        position: 'absolute',
+                                        bottom: '-5px',
+                                        filter: 'blur(2px)',
+                                    }} />
+                                </Box>
+                                <TextEffectFramer><Typography variant='h6' color={'gray'} textAlign={'center'} fontWeight={600} mt={0.5}>Get In Touch</Typography></TextEffectFramer>
+                                <TextEffectFramer><Typography variant='body2' textAlign={'center'} >Let's connect and code together. Feel free to drop me a message; I'm just a click away.</Typography></TextEffectFramer>
+                            </Paper>
+                        </TranslateXFramer>
+                    </Grid>
+                    <Grid item xxs={12} sm={4} md={6} order={{ xxs: 3, sm: 1 }} px={{ xxs: 0, sm: 1.5 }} >
+                        <form style={{ width: '100%' }}>
+                            <SkillCard1Framer>
+                                <TextField
+                                    fullWidth
+                                    required
+                                    autoComplete='nope'
+                                    name='full_name'
+                                    label={'Full Name'}
+                                    value={full_name}
+                                    onChange={userInputHandler}
+                                    error={!isFullNameValid ? true : false}
+                                    helperText={!isFullNameValid ? "Oops Not Valid.!" : ''}
+                                />
+                            </SkillCard1Framer>
 
-                                <Stack display={'flex'} flexDirection={{ xxs: 'column', md: 'row' }} gap={{ xxs: 0, md: 1.3 }} sx={{ '& div': { width: '100%' } }}>
-                                    <SkillCard1Framer durVal={1.5}>
-                                        <TextField
-                                            fullWidth
-                                            label={'Email Id'}
-                                            name='email_id'
-                                            type='email'
-                                            margin='dense'
-                                            required
-                                            autoComplete='nope'
-                                            value={email_id}
-                                            onChange={userInputHandler}
-                                            error={!isEmailIdValid ? true : false}
-                                            helperText={!isEmailIdValid ? "Oops Not Valid.!" : ''}
-                                        />
-                                    </SkillCard1Framer>
-                                    <SkillCard1Framer durVal={1.5}>
-                                        <TextField
-                                            fullWidth
-                                            name='mob_num'
-                                            label={'Mobile Number'}
-                                            margin='dense'
-                                            autoComplete='nope'
-                                            required
-                                            value={mob_num}
-                                            onChange={userInputHandler}
-                                            error={!isMobNumValid ? true : false}
-                                            helperText={!isMobNumValid ? "Oops Not Valid.!" : ''}
-                                        />
-                                    </SkillCard1Framer>
-                                </Stack>
-                                <SkillCard1Framer durVal={2}>
+                            <Stack display={'flex'} flexDirection={{ xxs: 'column', md: 'row' }} gap={{ xxs: 0, md: 1.3 }} sx={{ '& div': { width: '100%' } }}>
+                                <SkillCard1Framer durVal={1.5}>
                                     <TextField
                                         fullWidth
-                                        name='message'
-                                        label={'Message'}
-                                        multiline
+                                        label={'Email Id'}
+                                        name='email_id'
+                                        type='email'
                                         margin='dense'
-                                        autoComplete='nope'
                                         required
-                                        value={message}
+                                        autoComplete='nope'
+                                        value={email_id}
                                         onChange={userInputHandler}
-                                        error={!isMessageValid ? true : false}
-                                        helperText={!isMessageValid ? "Oops Not Valid.!" : ''}
-                                        sx={{
-                                            '& .MuiInputBase-root .MuiInputBase-input': {
-                                                height: { xxs: '200px !important', sm: '190px !important', md: '260px !important' }
-                                            }
-                                        }}
+                                        error={!isEmailIdValid ? true : false}
+                                        helperText={!isEmailIdValid ? "Oops Not Valid.!" : ''}
                                     />
                                 </SkillCard1Framer>
                                 <SkillCard1Framer durVal={1.5}>
-                                    <Button variant='contained' fullWidth sx={{ mt: 0.8, }} onClick={SubmitBtnFunc}>Submit</Button>
+                                    <TextField
+                                        fullWidth
+                                        name='mob_num'
+                                        label={'Mobile Number'}
+                                        margin='dense'
+                                        autoComplete='nope'
+                                        required
+                                        value={mob_num}
+                                        onChange={userInputHandler}
+                                        error={!isMobNumValid ? true : false}
+                                        helperText={!isMobNumValid ? "Oops Not Valid.!" : ''}
+                                    />
                                 </SkillCard1Framer>
-                            </form>
-                        </Grid>
-                        <Grid item xxs={12} sm={4} md={3} order={{ xxs: 2, sm: 1 }} py={{ xxs: 1.5, sm: 0 }}>
-                            <Stack display={'flex'} flexDirection={'column'} alignItems={'center'} gap={1.5} sx={{ '& div': { width: '100%' } }}>
-                                <TranslateXFramer XVal='100vw' durVal={1.5}>
-                                    <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Gmail'} cardIcon={Mail} />} backComponent={<ContactBackCard cardText={'sachinmishraf103@gamil.com'} sendMessageHangler={mailHandler} />} />
-                                </TranslateXFramer>
-                                <TranslateXFramer XVal='100vw' durVal={1.5}>
-                                    <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Whatsapp'} cardIcon={WhatsApp} />} backComponent={<ContactBackCard cardText={'+91-7545823925'} sendMessageHangler={whatsAppHandler} />} />
-                                </TranslateXFramer>
-                                <TranslateXFramer XVal='100vw' durVal={1.5}>
-                                    <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Telegram'} cardIcon={Telegram} />} backComponent={<ContactBackCard cardText={'@sachinmishrasoni'} sendMessageHangler={telegramHandler} />} />
-                                </TranslateXFramer>
                             </Stack>
-                        </Grid>
-
+                            <SkillCard1Framer durVal={2}>
+                                <TextField
+                                    fullWidth
+                                    name='message'
+                                    label={'Message'}
+                                    multiline
+                                    margin='dense'
+                                    autoComplete='nope'
+                                    required
+                                    value={message}
+                                    onChange={userInputHandler}
+                                    error={!isMessageValid ? true : false}
+                                    helperText={!isMessageValid ? "Oops Not Valid.!" : ''}
+                                    sx={{
+                                        '& .MuiInputBase-root .MuiInputBase-input': {
+                                            height: { xxs: '200px !important', sm: '190px !important', md: '260px !important' }
+                                        }
+                                    }}
+                                />
+                            </SkillCard1Framer>
+                            <SkillCard1Framer durVal={1.5}>
+                                <Button variant='contained' fullWidth sx={{ mt: 0.8, }} onClick={SubmitBtnFunc}>Submit</Button>
+                            </SkillCard1Framer>
+                        </form>
                     </Grid>
-                    {/*  */}
-                    <ConfirmDialog isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} ConfirmDoneBtn={ConfirmDoneBtn} />
-                    <SnackBar snackBarProps={snackBarProps} setSnackBarprops={setSnackBarprops} />
-                </Container>
-            </Box>
+                    <Grid item xxs={12} sm={4} md={3} order={{ xxs: 2, sm: 1 }} py={{ xxs: 1.5, sm: 0 }}>
+                        <Stack display={'flex'} flexDirection={'column'} alignItems={'center'} gap={1.5} sx={{ '& div': { width: '100%' } }}>
+                            <TranslateXFramer XVal='100vw' durVal={1.5}>
+                                <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Gmail'} cardIcon={Mail} />} backComponent={<ContactBackCard cardText={'sachinmishraf103@gamil.com'} sendMessageHangler={mailHandler} />} />
+                            </TranslateXFramer>
+                            <TranslateXFramer XVal='100vw' durVal={1.5}>
+                                <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Whatsapp'} cardIcon={WhatsApp} />} backComponent={<ContactBackCard cardText={'+91-7545823925'} sendMessageHangler={whatsAppHandler} />} />
+                            </TranslateXFramer>
+                            <TranslateXFramer XVal='100vw' durVal={1.5}>
+                                <FliperCard cardWidth='100%' frontComponent={<ContactFrontCard cardText={'Telegram'} cardIcon={Telegram} />} backComponent={<ContactBackCard cardText={'@sachinmishrasoni'} sendMessageHangler={telegramHandler} />} />
+                            </TranslateXFramer>
+                        </Stack>
+                    </Grid>
+
+                </Grid>
+                {/*  */}
+                <ConfirmDialog isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} ConfirmDoneBtn={ConfirmDoneBtn} />
+                <SnackBar snackBarProps={snackBarProps} setSnackBarprops={setSnackBarprops} />
+            </Container>
         </>
     )
 }

@@ -14,6 +14,7 @@ import LanguageSection from './LanguageSection';
 import Heading from '../../GlobalComponents/Heading';
 import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFramer';
 import TranslateXFramer from '../../GlobalComponents/AnimatedCompo/TranslateXFramer';
+import CounterShow from '../../Common/CounterShow';
 
 const About = () => {
     // const theme = useTheme();
@@ -37,12 +38,14 @@ const About = () => {
                 disableGutters
                 sx={{
                     minHeight: 'calc(100vh)',
-                    py: 7
+                    py: 7,
+                    position: 'relative'
                 }}
             >
+                <CounterShow count='01' />
                 <Box border={'2px none yellow'} mx={1} borderRadius={'15px'}>
                     <TranslateYFramer>
-                        <Heading headingName={'About Me'} headingIcon={Person} />
+                        <Heading heading='About me' icon={Person} caption='Discover' />
                     </TranslateYFramer>
                     <Box className='boxView-mobiles'>
                         <Grid container spacing={1.5}>

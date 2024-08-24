@@ -1,10 +1,11 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-const Heading = (props) => {
+const Heading = ({ heading='', icon: HeadingIcon, caption=''}) => {
     return (
         <>
-            <Box className={`${props.headingName}-heading`} textAlign={'center'} mt={0} mb={5}>
+            <Box className={`${heading}-heading`} textAlign={'center'} mt={0} mb={5}>
+                <Typography variant='caption' component={'p'} fontWeight={'bold'} color={'gray'}>{caption}</Typography>
                 <Typography variant='h4' component={'span'}
                     sx={{
                         position: 'relative',
@@ -36,7 +37,7 @@ const Heading = (props) => {
                             zIndex: '2'
                         }
                     }}
-                >{props.headingName} <props.headingIcon sx={{ color: 'mypresetcolor.backgroundColor', fontSize: '1rem', position: 'absolute', bottom: '-20px', left: '50%', transform: 'translateX(-50%)', zIndex: '2' }} /> </Typography>
+                >{heading} <HeadingIcon sx={{ color: 'mypresetcolor.backgroundColor', fontSize: '1rem', position: 'absolute', bottom: '-20px', left: '50%', transform: 'translateX(-50%)', zIndex: '2' }} /> </Typography>
             </Box>
         </>
     )

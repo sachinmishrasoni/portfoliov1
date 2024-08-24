@@ -8,6 +8,7 @@ import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFra
 import TextEffectFramer from '../../GlobalComponents/AnimatedCompo/TextEffectFramer';
 import TranslateXFramer from '../../GlobalComponents/AnimatedCompo/TranslateXFramer';
 import { serviceCardDetails } from '../../../Data/services';
+import CounterShow from '../../Common/CounterShow';
 
 
 const Services = () => {
@@ -22,10 +23,13 @@ const Services = () => {
                     width: '100%',
                     minHeight: 'calc(100vh)',
                     py: 7,
-                    px: { xxs: 1.5, lg: 0 }
+                    px: { xxs: 1.5, lg: 0 },
+                    position: 'relative'
                 }}
             >
-                <TranslateYFramer><Heading headingName={'Services'} headingIcon={DesignServices} /></TranslateYFramer>
+                <CounterShow count='02' />
+
+                <TranslateYFramer><Heading heading={'Services'} icon={DesignServices} caption='What I Do' /></TranslateYFramer>
                 <Box pt={2}>
                     <TextEffectFramer><Typography textAlign={''}>I specialize in providing end-to-end web development services that encompass design, functionality, and performance. From crafting eye-catching user interfaces to building robust back-end systems, I create seamless and responsive web experiences. My focus on optimization ensures your web assets are not only visually appealing but also fast and secure. Whether you need a new website, web application, or improvements to an existing one, I'm here to deliver tailored solutions that elevate your online presence. Let's collaborate to bring your digital vision to life.</Typography></TextEffectFramer>
                 </Box>
