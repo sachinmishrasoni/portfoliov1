@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const ScaleFramer = ({children, durVal=0.5}) => {
+const ScaleFramer = ({children, durVal=0.5, delayVal = 0}) => {
     const control = useAnimation();
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
 
@@ -23,10 +23,10 @@ const ScaleFramer = ({children, durVal=0.5}) => {
             scale: 1,
             opacity: 1,
             transition: {
-                deley: 1,
+                deley: delayVal,
                 duration: durVal,
                 type: 'spring',
-                bounce: 0.1
+                bounce: 0.2
 
             }
         }

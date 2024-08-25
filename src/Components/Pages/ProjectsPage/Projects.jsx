@@ -10,12 +10,16 @@ import { useTheme } from '@emotion/react';
 import ScaleFramer from '../../GlobalComponents/AnimatedCompo/ScaleFramer';
 import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFramer';
 import CounterShow from '../../Common/CounterShow';
+import ProjectCard01 from './ProjectCard01';
+import SelectInput from './Compo/SelectInput';
+// import SkillCard1Framer from '../../GlobalComponents/AnimatedCompo/SkillCard1Framer';
 
 const Projects = () => {
     const swiperRef = useRef();
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('md'));
     const [activeTab, setActiveTab] = useState(0);
+
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
     const [projectPerPage, setProjectPerPage] = useState(3);
@@ -127,6 +131,31 @@ const Projects = () => {
                         </Box>
                     </Box>
                 </TranslateYFramer>
+
+                <Stack direction={'row'} justifyContent={'flex-end'} alignItems={'center'} gap={1} mb={2} px={1}>
+                    <Box sx={{
+                        width: '100%',
+                        height: '2px',
+                        backgroundColor: 'mypresetcolor.highlightColor',
+                        borderRadius: 5
+                    }} />
+
+                    <SelectInput />
+                </Stack>
+
+                <Stack direction={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={2}>
+                    {
+                        Array(5).fill('').map((item, index) => (
+                            <>
+                                {/* <SkillCard1Framer key={index} dVal={index * 0.15}> */}
+                                <ScaleFramer key={index} durVal={1}  delayVal={index * 0.3}>
+                                    <ProjectCard01 />
+                                </ScaleFramer>
+                                {/* </SkillCard1Framer> */}
+                            </>
+                        ))
+                    }
+                </Stack>
             </Container>
         </>
     )
