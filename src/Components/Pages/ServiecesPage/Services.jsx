@@ -1,15 +1,16 @@
 import React from 'react'
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Box, Container, Stack } from '@mui/material';
 import Heading from '../../GlobalComponents/Heading';
 import { DesignServices } from '@mui/icons-material';
 import ServicesCard2 from './ServicesCard2';
 import ServicesCard1 from './ServicesCard1';
 import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFramer';
-import TextEffectFramer from '../../GlobalComponents/AnimatedCompo/TextEffectFramer';
 import TranslateXFramer from '../../GlobalComponents/AnimatedCompo/TranslateXFramer';
 import { serviceCardDetails } from '../../../Data/services';
 import CounterShow from '../../Common/CounterShow';
+import WavyText from '../../GlobalComponents/AnimatedCompo/WavyText';
 
+const text = "I specialize in providing end-to-end web development services that encompass design, functionality, and performance. From crafting eye-catching user interfaces to building robust back-end systems, I create seamless and responsive web experiences. My focus on optimization ensures your web assets are not only visually appealing but also fast and secure. Whether you need a new website, web application, or improvements to an existing one, I'm here to deliver tailored solutions that elevate your online presence. Let's collaborate to bring your digital vision to life."
 
 const Services = () => {
 
@@ -31,7 +32,7 @@ const Services = () => {
 
                 <TranslateYFramer><Heading heading={'Services'} icon={DesignServices} caption='What I Do' /></TranslateYFramer>
                 <Box pt={2}>
-                    <TextEffectFramer><Typography textAlign={''}>I specialize in providing end-to-end web development services that encompass design, functionality, and performance. From crafting eye-catching user interfaces to building robust back-end systems, I create seamless and responsive web experiences. My focus on optimization ensures your web assets are not only visually appealing but also fast and secure. Whether you need a new website, web application, or improvements to an existing one, I'm here to deliver tailored solutions that elevate your online presence. Let's collaborate to bring your digital vision to life.</Typography></TextEffectFramer>
+                    <WavyText text={text} />
                 </Box>
                 <Stack display={{ xxs: 'flex', sm: 'none' }} flexDirection={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={2} mt={5}>
                     {serviceCardDetails.map((items, index) => <TranslateYFramer key={index}><ServicesCard1 data={items} /></TranslateYFramer>)}

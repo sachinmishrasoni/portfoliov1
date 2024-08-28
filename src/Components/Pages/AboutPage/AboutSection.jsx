@@ -8,6 +8,10 @@ import Banner01 from '../../../Image/BannerImg/Banner01.jpeg';
 import Banner02 from '../../../Image/BannerImg/Banner02.jpg';
 import Banner03 from '../../../Image/BannerImg/FullStackBanner.jpeg';
 import TextEffectFramer from '../../GlobalComponents/AnimatedCompo/TextEffectFramer';
+import TranslateYFramer from '../../GlobalComponents/AnimatedCompo/TranslateYFramer';
+// import WavyText from '../../GlobalComponents/AnimatedCompo/WavyText';
+
+const aboutText = "Hey there! I'm Sam, a passionate full-stack developer with a love for crafting digital solutions. With a knack for problem-solving and a creative mindset, I thrive on turning ideas into seamless, user-friendly applications. I relish challenges and embrace the ever-evolving tech landscape. Whether it's front-end finesse or back-end wizardry, I'm your go-to developer for bringing innovation to life. Let's collaborate and build something extraordinary together! Feel free to personalize and expand upon this introduction to reflect your unique skills and personality."
 
 const AboutSection = () => {
     const theme = useTheme();
@@ -16,7 +20,7 @@ const AboutSection = () => {
         <>
             <Paper className='about-content-section'
                 sx={{
-                    backgroundColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.2)': 'rgba(0,0,0,0.1)',
+                    backgroundColor: (theme) => theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.1)',
                     borderRadius: '10px',
                     position: 'relative',
                     overflow: 'hidden'
@@ -140,15 +144,37 @@ const AboutSection = () => {
                     borderColor: 'mypresetcolor.highlightColor',
                     borderRadius: '0px 0px 10px 10px',
                     padding: '16px',
-                    paddingTop: '35px',
+                    // paddingTop: '35px',
                 }}>
-                    <Stack mb={2}sx={{'& .MuiTypography-root': {lineHeight: 1.1}}}>
+                    <Stack mb={0} mr={10}>
                         <Typography variant='h5' fontWeight={'bold'} ><TextEffectFramer>Sachin Mishra</TextEffectFramer></Typography>
-                        <Typography variant='caption' color={'mypresetcolor.highlightColor'} fontWeight={'bold'} ><TextEffectFramer>(FullStack Developer)</TextEffectFramer></Typography>
-                        <TextEffectFramer><Typography variant='caption' component={'q'}  mt={1}>I'm not a great programmer; I'm just a good programmer with great habits.</Typography></TextEffectFramer>
+                        <Typography variant='caption' color={'gray'} sx={{
+                            '& span': {
+                                fontSize: '0.85rem',
+                                color: 'mypresetcolor.highlightColor',
+                                fontWeight: 'bold'
+                            }
+                        }}><TranslateYFramer><span>@Software Engineer</span> at Misemind Technology Pvt. LTD</TranslateYFramer></Typography>
+
                     </Stack>
-                    <TextEffectFramer><Typography sx={{ typography: { xxs: 'caption', xs: 'body2', sm: 'body1' } }} textAlign={'justify'}>Hey there! I'm Sam, a passionate full-stack developer with a love for crafting digital solutions. With a knack for problem-solving and a creative mindset, I thrive on turning ideas into seamless, user-friendly applications. I relish challenges and embrace the ever-evolving tech landscape. Whether it's front-end finesse or back-end wizardry, I'm your go-to developer for bringing innovation to life. Let's collaborate and build something extraordinary together!
-                    Feel free to personalize and expand upon this introduction to reflect your unique skills and personality.</Typography></TextEffectFramer>
+                    <TextEffectFramer><Typography sx={{ mt: 1, typography: { xxs: 'caption', xs: 'body2', sm: 'body1' } }} textAlign={'justify'}>{aboutText}</Typography></TextEffectFramer>
+
+                    <TranslateYFramer durVal={1}>
+                        <Box sx={{
+                            px: 1,
+                            py: 0.5,
+                            mt: 2,
+                            backgroundColor: 'rgba(0,0,0,0.1)',
+                            borderRadius: 1,
+                            borderLeft: '3px solid',
+                            borderColor: 'mypresetcolor.highlightColor',
+                            overflow: 'hidden'
+                        }}>
+                            <TextEffectFramer>
+                                <Typography variant='body2' color={'secondary'} component={'q'} lineHeight={0}>I'm not a great programmer; I'm just a good programmer with great habits.</Typography>
+                            </TextEffectFramer>
+                        </Box>
+                    </TranslateYFramer>
                 </Box>
             </Paper>
         </>

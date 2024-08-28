@@ -1,15 +1,19 @@
 import React from 'react';
-import { Box, Stack, Typography } from '@mui/material';
+import { alpha, Box, Chip, Stack, Typography, useTheme } from '@mui/material';
 import SkillCard1Framer from '../../GlobalComponents/AnimatedCompo/SkillCard1Framer';
 import CustomChip from '../../GlobalComponents/CustomChip';
 import { backendData, frontendData, languageData, others, profesSkillsData } from '../../../Data/skills'
 import { FaRegCircleDot } from "react-icons/fa6";
 import CodingBoy from '../../../Image/CodingBoy.png'
+import { FaReact } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import BtnHoverFramer from '../../GlobalComponents/AnimatedCompo/BtnHoverFramer';
 
 const BulletIcon = () => (
     <FaRegCircleDot size={15} />
 )
 const SkillSection = () => {
+    const theme = useTheme();
     return (
         <>
             <Box id='skills-section' className='education-section' mb={2}>
@@ -25,6 +29,7 @@ const SkillSection = () => {
 
                 {/* Circle Progess Bar */}
                 <Box className='circle-progress-bar' >
+                    
                     <Stack className='professional-skills-box' mb={1}>
                         <Typography variant='body1' fontWeight={'bold'}>Professional Skills :</Typography>
 
@@ -33,6 +38,7 @@ const SkillSection = () => {
                                 profesSkillsData.map((item, index) => <SkillCard1Framer key={index} dVal={index * 0.15}><CustomChip label={item.label} icon={item.icon} /></SkillCard1Framer>)
                             }
                         </Stack>
+
                     </Stack>
                     <Box className='technical-skills-box' mt={2} overflow={'hidden'}>
                         <Typography variant='body1' fontWeight={'bold'}>Technical Skills :</Typography>
@@ -97,7 +103,7 @@ const SkillSection = () => {
                         </Box>
                     </Box>
                 </Box>
-                
+
             </Box>
         </>
     )

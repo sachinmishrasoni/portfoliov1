@@ -8,6 +8,7 @@ import TextEffectFramer from '../../GlobalComponents/AnimatedCompo/TextEffectFra
 import TranslateXFramer from '../../GlobalComponents/AnimatedCompo/TranslateXFramer';
 import IconShow from './IconShow';
 import dottedImg from '../../../Image/7694366b.png'
+import WavyText from '../../GlobalComponents/AnimatedCompo/WavyText';
 
 const Home = () => {
     const theme = useTheme();
@@ -35,7 +36,7 @@ const Home = () => {
                 alignItems: 'center',
                 position: 'relative',
                 // overflow: 'hidden',
-               
+
                 '&::before': {
                     content: '""',
                     position: 'absolute',
@@ -125,11 +126,16 @@ const Home = () => {
                                 </Typography>
                             </Typography>
                         </TextEffectFramer>
-                        <TextEffectFramer secVal={2}><Typography sx={{ typography: { xxs: 'caption', xs: 'body2', sm: 'body1', md: 'h6' }, mt: 0.5 }}>Coding is my language, and the web is my canvas. Join me on a journey of innovation, where every pixel and line of code has a purpose.</Typography></TextEffectFramer>
+                        {/* <TextEffectFramer secVal={2}>
+                            <Typography sx={{ typography: { xxs: 'caption', xs: 'body2', sm: 'body1', md: 'h6' }, mt: 0.5 }}>
+                                Coding is my language, and the web is my canvas. Join me on a journey of innovation, where every pixel and line of code has a purpose.
+                            </Typography>
+                        </TextEffectFramer> */}
+                        <WavyText variant='h6' text={"Coding is my language, and the web is my canvas. Join me on a journey of innovation, where every pixel and line of code has a purpose."}  />
                         <Stack display={'flex'} flexDirection={'row'} gap={2} my={2}>
                             {
                                 socialMedia.map((item, ind) =>
-                                    <TextEffectFramer key={ind} secVal={ind + 1}>
+                                    <TextEffectFramer key={ind} secVal={ind + 0.5} deleyVal={2}>
                                         <BtnHoverFramer>
                                             <a key={ind} href={item.link} target='_blank' rel='noopener noreferrer'>
                                                 <IconButton size='small' sx={{ border: '2px solid', borderColor: 'mypresetcolor.highlightColor', '& .MuiSvgIcon-root': { color: 'mypresetcolor.highlightColor' }, '&:hover .MuiSvgIcon-root': { color: 'mypresetcolor.backgroundColor' }, '&:hover': { backgroundColor: 'mypresetcolor.highlightColor' } }}>

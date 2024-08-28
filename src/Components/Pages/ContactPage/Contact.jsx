@@ -158,16 +158,18 @@ const Contact = () => {
                                         component={'img'}
                                         src={ContactIconImg}
                                         title='Cotact Img'
-                                        width={{ xxs: 100, sm: 150 }}
+                                        width={{ xxs: 75, sm: 100 }}
                                     />
                                     <Box sx={{
-                                        width: { xxs: 100, sm: 150 },
+                                        width: { xxs: 75, sm: 100 },
                                         height: '10px',
                                         backgroundColor: 'rgba(0, 0, 0, 0.2)',
                                         borderRadius: '50%',
                                         position: 'absolute',
+                                        left: '50%',
                                         bottom: '-5px',
-                                        filter: 'blur(2px)',
+                                        transform: 'translateX(-50%)',
+                                        filter: 'blur(5px)',
                                     }} />
                                 </Box>
                                 <TextEffectFramer><Typography variant='h6' color={'gray'} textAlign={'center'} fontWeight={600} mt={0.5}>Get In Touch</Typography></TextEffectFramer>

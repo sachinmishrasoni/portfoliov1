@@ -19,7 +19,7 @@ const ContactBackCard = (props) => {
                     alignItems: 'center',
 
                 }}>
-                <Typography variant='h6' fontWeight={'bold'}>Ping me</Typography>
+                <Typography variant='h6' fontWeight={'bold'} color={'gray'}>Ping me</Typography>
                 <Typography variant='body1' mb={1} sx={{ wordBreak: 'break-word', textAlign: 'center' }}>{props.cardText}</Typography>
                 <Button
                     onClick={() => props.sendMessageHangler()}

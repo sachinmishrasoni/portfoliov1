@@ -22,6 +22,12 @@ import { SiMongodb } from "react-icons/si";
 import { FaGitAlt } from "react-icons/fa";
 import { FaGithubAlt } from "react-icons/fa";
 import { SiAdobephotoshop } from "react-icons/si";
+import { SiPostman } from "react-icons/si";
+import { FaJira } from "react-icons/fa";
+// import { SiNestjs } from "react-icons/si";
+// import { GrGraphQl } from "react-icons/gr";
+// import { SiPostgresql } from "react-icons/si";
+// import { SiDjango } from "react-icons/si";
 
 export const profesSkillsData = [
     {
@@ -129,6 +135,22 @@ export const backendData = [
         label: 'MongoDB',
         icon: SiMongodb
     },
+    // {
+    //     label: 'NextJs',
+    //     icon: SiNestjs
+    // },
+    // {
+    //     label: 'GraphQL',
+    //     icon: GrGraphQl
+    // },
+    // {
+    //     label: 'PostgreSQL',
+    //     icon: SiPostgresql
+    // },
+    // {
+    //     label: 'Django',
+    //     icon: SiDjango
+    // },
 ];
 
 export const others = [
@@ -139,6 +161,14 @@ export const others = [
     {
         label: 'GitHub',
         icon: FaGithubAlt
+    },
+    {
+        label: 'Postman',
+        icon: SiPostman
+    },
+    {
+        label: 'Jira',
+        icon: FaJira
     },
     {
         label: 'Photoshop',

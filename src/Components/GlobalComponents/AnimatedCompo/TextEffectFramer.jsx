@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const TextEffectFramer = ({children, secVal=1.5}) => {
+const TextEffectFramer = ({children, secVal=1.5, deleyVal=0}) => {
     const control = useAnimation();
     const [ref, inView] = useInView({  triggerOnce: true, threshold: 0.3 });
     // const [aniVal, setAniVal] = useState(50);
@@ -44,7 +44,7 @@ const TextEffectFramer = ({children, secVal=1.5}) => {
             y: 0,
             opacity: 1,
             transition: {
-                // deley: 0.5,
+                deley: deleyVal,
                 duration: secVal,
                 type: 'spring',
                 bounce: 0.1
